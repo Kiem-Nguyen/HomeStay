@@ -29,7 +29,7 @@
                 foreach (var item in Model)
                 {
                     var pricesale = item.HomeStayModel.Price - item.HomeStayModel.Price * item.HomeStayModel.Sale / 100;
-                    <div class="col-md-4 item-block animate-box count-data" data-animate-effect="fadeIn">
+                    <div class="col-md-4 item-block animate-box count-data list-pagination" data-animate-effect="fadeIn">
                         <div class="fh5co-property">
                             <figure>
                                 <a href="@Url.Action("Product", "Detail", new { id = item.IDHomeStay })">
@@ -63,6 +63,7 @@
             }
 
         </div>
+        <ul class="pagination"></ul>
         <div class="row">
             <div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
                 <nav>
@@ -278,5 +279,11 @@
             $(element).text(re + "...");
         }
     };
+
+    var monkeyList = new List('.list-pagination', {
+        valueNames: ['name'],
+        page: 3,
+        pagination: true
+    });
 
 </script>
