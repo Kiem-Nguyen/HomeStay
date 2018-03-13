@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HomeStayVNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="About_Us_Admin">
+    <Key>
+      <PropertyRef Name="ID_User" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="Phone" />
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Adress">
+    <Key>
+      <PropertyRef Name="IDLocation" />
+    </Key>
+    <Property Name="IDLocation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDEvent" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="ID_Event" />
+    </Key>
+    <Property Name="ID_Event" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_Event" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Summary" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HomeStay">
+    <Key>
+      <PropertyRef Name="ID_HomeStay" />
+    </Key>
+    <Property Name="ID_HomeStay" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Summary" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IDLocation" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Adress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Sale" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TypeHourse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Baths" Type="Int32" />
+    <Property Name="Beds" Type="Int32" />
+    <Property Name="Garages" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ImageHomeStay">
+    <Key>
+      <PropertyRef Name="IDImage" />
+    </Key>
+    <Property Name="IDImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDHomeStay" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="HomeStayVNEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="About_Us_Admins" EntityType="Self.About_Us_Admin" />
+    <EntitySet Name="Adresses" EntityType="Self.Adress" />
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="HomeStays" EntityType="Self.HomeStay" />
+    <EntitySet Name="ImageHomeStays" EntityType="Self.ImageHomeStay" />
+  </EntityContainer>
+</Schema>

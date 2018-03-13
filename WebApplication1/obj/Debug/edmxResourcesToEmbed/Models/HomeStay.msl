@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HomeStayVNModelStoreContainer" CdmEntityContainer="HomeStayVNEntities11">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="HomeStayVNModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Adresses">
+      <EntityTypeMapping TypeName="HomeStayVNModel.Adress">
+        <MappingFragment StoreEntitySet="Adress">
+          <ScalarProperty Name="IDLocation" ColumnName="IDLocation" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="IDEvent" ColumnName="IDEvent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="HomeStayVNModel.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="ID_Event" ColumnName="ID Event" />
+          <ScalarProperty Name="Name_Event" ColumnName="Name Event" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HomeStays">
+      <EntityTypeMapping TypeName="HomeStayVNModel.HomeStay">
+        <MappingFragment StoreEntitySet="HomeStay">
+          <ScalarProperty Name="ID_HomeStay" ColumnName="ID HomeStay" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="IDLocation" ColumnName="IDLocation" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TypeHourse" ColumnName="TypeHourse" />
+          <ScalarProperty Name="Baths" ColumnName="Baths" />
+          <ScalarProperty Name="Beds" ColumnName="Beds" />
+          <ScalarProperty Name="Garages" ColumnName="Garages" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImageHomeStays">
+      <EntityTypeMapping TypeName="HomeStayVNModel.ImageHomeStay">
+        <MappingFragment StoreEntitySet="ImageHomeStay">
+          <ScalarProperty Name="IDImage" ColumnName="IDImage" />
+          <ScalarProperty Name="IDHomeStay" ColumnName="IDHomeStay" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
