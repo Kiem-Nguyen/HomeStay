@@ -30,10 +30,11 @@ namespace WebApplication1.Controllers
                             from b in imageHomeStay
                             from c in address
                             where a.ID_HomeStay == b.IDHomeStay && c.IDLocation == a.IDLocation && (a.Name.Contains(key) || a.Description.Contains(key))
-                            group b by new { a.ID_HomeStay } into groupClause
+                            group b by new { a.ID_HomeStay, c.City } into groupClause
                             select new HomeStayViewModel
                             {
                                 IDHomeStay = groupClause.Key.ID_HomeStay,
+                                City = groupClause.Key.City,
                                 ImageList = groupClause.Select(x => new ImageItem { IDImage = x.IDImage, Image = x.Image }).ToList(),
                             }).ToList();
                 var allHomeStay = data.Join(dbContext.HomeStays, x => x.IDHomeStay, y => y.ID_HomeStay, (x, y) => y).ToList();

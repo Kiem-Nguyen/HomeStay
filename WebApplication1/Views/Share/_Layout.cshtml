@@ -5,7 +5,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
- <!--<![endif]-->
+<!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,12 +52,12 @@
     <link rel="stylesheet" href="~/css/flexslider.css">
     <!-- Theme style  -->
     <link rel="stylesheet" href="~/css/style.css">
-   
+    <!-- Modernizr JS -->
+    <script src="~/js/modernizr-2.6.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body>
-
-
     <div id="fh5co-page">
         <header id="fh5co-header" role="banner">
             <div class="container">
@@ -69,8 +69,15 @@
                                 <li><a href="@Url.Action("Buys", "Home")">Buy</a></li>
                                 <li><a href="@Url.Action("Rent", "Home")">Rent</a></li>
                                 <li><a href="@Url.Action("Properties", "Home")">Properties</a></li>
-                                <li class="call"><a href="tel://123456789"><i class="icon-phone"></i> +1 123 456 789</a></li>
-                                <li class="cta"><a href="@Url.Action("Contact", "Home")">Contact us</a></li>
+                                <li><a href="@Url.Action("Contact", "Home")">Contact us</a></li>
+                                @if (Session["User"] != null)
+                                {
+                                    var User = Session["User"] as WebApplication1.Models.Account;
+                                    var name = User?.FirstName;
+
+                                    <li class="cta" style="width:auto; cursor: pointer"><a class="OpenModal">name</a></li>
+                                }
+                                <li class="cta" style="width:auto; cursor: pointer"><a class="OpenModal">Login</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -120,14 +127,14 @@
 
             </div>
         </footer>
-    </div>
- <!-- Modernizr JS -->
-    <script src="~/js/modernizr-2.6.2.min.js"></script>
 
+        @{
+            Html.RenderAction("Login", "Login");
+        }
+    </div>
 
     <!-- jQuery -->
     <script src="~/js/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
     <!-- jQuery Easing -->
     <script src="~/js/jquery.easing.1.3.js"></script>
     <!-- Bootstrap -->
@@ -140,3 +147,36 @@
     <script src="~/js/main.js"></script>
 </body>
 </html>
+
+
+<script>
+    $(document).ready(function () {
+        ellipsisText();
+
+        $(".OpenModal").click(function () {
+            $('#TheModal').removeClass('hidden');
+        });
+
+        $('.CloseModal').click(function () {
+            $('#TheModal').addClass('hidden');
+        });
+
+        $(window).click(function (e) {
+            if (e.target.id == 'TheModal') {
+                $('#TheModal').addClass('hidden');
+            }
+        });
+    });
+
+    function ellipsisText() {
+        var ellipsisText = $('.ellipsis-text');
+        var textContainer = 20;
+        for (var i = 0, l = ellipsisText.length; i < l; i++) {
+            var element = ellipsisText[i];
+            var string = $(element).text();
+            var text = string.split(" ", 20);
+            var re = text.join(" ");
+            $(element).text(re + "...");
+        }
+    }
+</script>

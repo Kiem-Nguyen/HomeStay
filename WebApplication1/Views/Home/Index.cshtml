@@ -103,17 +103,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        var ellipsisText = $('.ellipsis-text');
-        var textContainer = 20;
-        for (var i = 0, l = ellipsisText.length; i < l; i++) {
-            var element = ellipsisText[i];
-            var string = $(element).text();
-            var text = string.split(" ", 20);
-            var re = text.join(" ");
-            $(element).text(re + "...");
-        }
-    });
-</script>

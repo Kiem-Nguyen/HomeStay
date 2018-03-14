@@ -29,7 +29,7 @@
                 foreach (var item in Model)
                 {
                     var pricesale = item.HomeStayModel.Price - item.HomeStayModel.Price * item.HomeStayModel.Sale / 100;
-                    <div class="col-md-4 item-block animate-box count-data list-pagination" data-animate-effect="fadeIn">
+                    <div class="col-md-4 item-block animate-box count-data" data-animate-effect="fadeIn">
                         <div class="fh5co-property">
                             <figure>
                                 <a href="@Url.Action("Product", "Detail", new { id = item.IDHomeStay })">
@@ -63,13 +63,21 @@
             }
 
         </div>
-        <ul class="pagination"></ul>
         <div class="row">
-            <div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
+            <div class="col-md-12 text-center animate-box pagination-head" data-animate-effect="fadeIn">
                 <nav>
-                    <ul id="pagination-demo" class="pagination-sm">
-                        <li>1</li>
-                        <li>2</li>
+                    <ul class="pagination">
+                        <li class="disabled bt-previous">
+                            <span style="cursor: pointer">Previous</span>
+                        </li>
+                    </ul>
+                    <ul class="pagination append-page">
+
+                    </ul>
+                    <ul class="pagination">
+                        <li class="disabled bt-next">
+                            <span style="cursor: pointer">Next</span>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -162,7 +170,6 @@
 
 <script>
     $(document).ready(function () {
-        ellipsisText();
 
         $('#myInput').keypress(function (e) {
             if (e.which == 13) {
@@ -173,12 +180,35 @@
         paging();
     });
 
-    function paging()
-    {
+    function paging() {
         var count = $(".filter-Search").find('.count-data');
-        var page = parseInt(count / 6);
-
         pageSize = 3;
+        var page = 0;
+        if (count == 0 || count.length / pageSize < 2)
+        {
+            $('.pagination-head').html('');
+        }
+        if (count.length % pageSize == 0) {
+            page = parseInt(count.length / pageSize);
+        }
+        else {
+            page = parseInt(count.length / pageSize) + 1;
+        }
+
+        $('.append-page').html('');
+        for (var i = 1; i <= page ; i++)
+        {
+            var item = '';
+            if (i == 1)
+            {
+                item = '<li class="active"><span style="cursor: pointer">' + i + '</span></li>';
+            }
+            else
+            {
+                item = '<li class=""><span style="cursor: pointer">' + i + '</span></li>';
+            }
+            $('.append-page').append(item);
+        }
 
         showPage = function (page) {
             $(".count-data").hide();
@@ -190,12 +220,11 @@
 
         showPage(1);
 
-        $("#pagin li a").click(function () {
-            $("#pagin li a").removeClass("current");
-            $(this).addClass("current");
+        $(".pagination li span").click(function () {
+            $(".pagination li").removeClass("active");
+            $(this).parent().addClass("active");
             showPage(parseInt($(this).text()))
         });
-        
     }
 
     function Search(key) {
@@ -209,6 +238,7 @@
                 if (data.length == 0) {
                     var html = '<div class="col-md-12 count-data" data-animate-effect="fadeIn"><h1 style="text-align: center">Khong co du lieu can tim</h1></div>';
                     $(".filter-Search").append(html);
+                    paging();
                 }
                 else {
                     for (var i = 0; i < data.length; i++) {
@@ -221,12 +251,13 @@
                         if (data[i].HomeStayModel.Sale.HasValue && data[i].HomeStayModel.Sale.Value > 0) {
                             edited2 = '<span style="text-decoration: line-through; color: red" class="price">$' + data[i].HomeStayModel.Price.Value.ToString("#.##") + '</span>';
                         }
+                        @*var url = '@Url.Action("Product", "Detail", new { id : data[i].IDHomeStay })';*@
 
                         var html = '<div class="col-md-4 item-block count-data" data-animate-effect="fadeIn">' +
                         '<div class="fh5co-property">' +
                             '<figure>' +
-                                //'<a href="' + Url.Action("Product", "Detail", new { id: item.IDHomeStay }) + '">' +
-                                '<a href="http://localhost:49951/Home/Buys">' +
+                                //'<a href="' + Url.Action("Product", "Detail", new { id: data[i].IDHomeStay }) + '">' +
+                                '<a href="/Detail/Product/' + data[i].IDHomeStay + '">' +
                                     '<img src="' + data[i].ImageList[0].Image + '" alt="Free Website Templates FreeHTML5.co" class="img-responsive">' +
                                 '</a>' +
                                 edited +
@@ -252,38 +283,15 @@
                     }
                 }
                 ellipsisText();
+                paging();
             },
             error: function (data) {
                 $(".filter-Search").html("");
                 var html = '<div class="col-md-12 count-data" data-animate-effect="fadeIn"><h1 style="text-align: center">Khong co du lieu can tim</h1></div>';
                 $(".filter-Search").append(html);
-            }
-        });
-
-        $('#pagination-demo').twbsPagination({
-            visiblePages: 5,
-            onPageClick: function (event, page) {
-                $('#filter-Search').text('Page ' + page);
+                paging();
             }
         });
     };
-
-    function ellipsisText() {
-        var ellipsisText = $('.ellipsis-text');
-        var textContainer = 20;
-        for (var i = 0, l = ellipsisText.length; i < l; i++) {
-            var element = ellipsisText[i];
-            var string = $(element).text();
-            var text = string.split(" ", 20);
-            var re = text.join(" ");
-            $(element).text(re + "...");
-        }
-    };
-
-    var monkeyList = new List('.list-pagination', {
-        valueNames: ['name'],
-        page: 3,
-        pagination: true
-    });
 
 </script>

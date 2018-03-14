@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="HomeStayVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'HomeStayVN.dbo.About Us Admin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="About Us Admin">
@@ -16,6 +26,19 @@ warning 6002: The table/view 'HomeStayVN.dbo.About Us Admin' does not have a pri
     <Property Name="Phone" Type="nchar" MaxLength="12" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Image" Type="char" MaxLength="150" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HomeStayVN.dbo.Account' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UseName" Type="nchar" MaxLength="100" />
+    <Property Name="PassWord" Type="nchar" MaxLength="100" />
+    <Property Name="TypeUser" Type="int" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'HomeStayVN.dbo.Adress' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -78,6 +101,7 @@ warning 6002: The table/view 'HomeStayVN.dbo.ImageHomeStay' does not have a prim
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityContainer Name="HomeStayVNModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="About Us Admin" EntityType="Self.About Us Admin" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -89,6 +113,16 @@ warning 6002: The table/view 'HomeStayVN.dbo.ImageHomeStay' does not have a prim
     [About Us Admin].[Email] AS [Email], 
     [About Us Admin].[Image] AS [Image]
     FROM [dbo].[About Us Admin] AS [About Us Admin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Account" EntityType="Self.Account" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Account].[ID] AS [ID], 
+    [Account].[UseName] AS [UseName], 
+    [Account].[PassWord] AS [PassWord], 
+    [Account].[TypeUser] AS [TypeUser], 
+    [Account].[FirstName] AS [FirstName], 
+    [Account].[Lastname] AS [Lastname]
+    FROM [dbo].[Account] AS [Account]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Adress" EntityType="Self.Adress" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 

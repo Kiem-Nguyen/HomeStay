@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HomeStayVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HomeStayVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'HomeStayVN.dbo.About Us Admin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="About Us Admin">
@@ -21,6 +31,19 @@ warning 6002: The table/view 'HomeStayVN.dbo.About Us Admin' does not have a pri
           <Property Name="Phone" Type="nchar" MaxLength="12" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Image" Type="char" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HomeStayVN.dbo.Account' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UseName" Type="nchar" MaxLength="100" />
+          <Property Name="PassWord" Type="nchar" MaxLength="100" />
+          <Property Name="TypeUser" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'HomeStayVN.dbo.Adress' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -83,6 +106,7 @@ warning 6002: The table/view 'HomeStayVN.dbo.ImageHomeStay' does not have a prim
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityContainer Name="HomeStayVNModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="About Us Admin" EntityType="Self.About Us Admin" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -94,6 +118,16 @@ warning 6002: The table/view 'HomeStayVN.dbo.ImageHomeStay' does not have a prim
     [About Us Admin].[Email] AS [Email], 
     [About Us Admin].[Image] AS [Image]
     FROM [dbo].[About Us Admin] AS [About Us Admin]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Account" EntityType="Self.Account" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Account].[ID] AS [ID], 
+    [Account].[UseName] AS [UseName], 
+    [Account].[PassWord] AS [PassWord], 
+    [Account].[TypeUser] AS [TypeUser], 
+    [Account].[FirstName] AS [FirstName], 
+    [Account].[Lastname] AS [Lastname]
+    FROM [dbo].[Account] AS [Account]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Adress" EntityType="Self.Adress" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -134,11 +168,20 @@ warning 6002: The table/view 'HomeStayVN.dbo.ImageHomeStay' does not have a prim
     FROM [dbo].[ImageHomeStay] AS [ImageHomeStay]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HomeStayVNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -163,6 +206,17 @@ warning 6002: The table/view 'HomeStayVN.dbo.ImageHomeStay' does not have a prim
           <Property Name="Phone" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UseName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="PassWord" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="TypeUser" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Adress">
           <Key>
@@ -207,8 +261,10 @@ warning 6002: The table/view 'HomeStayVN.dbo.ImageHomeStay' does not have a prim
           <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="HomeStayVNEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="About_Us_Admins" EntityType="Self.About_Us_Admin" />
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Adresses" EntityType="Self.Adress" />
           <EntitySet Name="Events" EntityType="Self.Event" />
           <EntitySet Name="HomeStays" EntityType="Self.HomeStay" />
@@ -220,6 +276,16 @@ warning 6002: The table/view 'HomeStayVN.dbo.ImageHomeStay' does not have a prim
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HomeStayVNModelStoreContainer" CdmEntityContainer="HomeStayVNEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="HomeStayVNModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="HomeStayVNModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -241,6 +307,18 @@ warning 6002: The table/view 'HomeStayVN.dbo.ImageHomeStay' does not have a prim
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="HomeStayVNModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UseName" ColumnName="UseName" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="TypeUser" ColumnName="TypeUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -157,6 +157,7 @@
     <Content Include="images\testimonial_person2.jpg" />
     <Content Include="images\testimonial_person3.jpg" />
     <Content Include="images\testimonial_person4.jpg" />
+    <Content Include="images\user.png" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\google_map.js" />
     <Content Include="js\jquery.easing.1.3.js" />
@@ -189,6 +190,7 @@
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,7 +198,13 @@
     <Compile Include="Models\About_Us_Admin.cs">
       <DependentUpon>HomeStayEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account.cs">
+      <DependentUpon>HomeStayEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Adress.cs">
+      <DependentUpon>HomeStayEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>HomeStayEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Event.cs">
@@ -210,15 +218,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HomeStayEntities.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomeStayEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeStayEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HomeStayEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HomeStayEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ImageHomeStay.cs">
-      <DependentUpon>HomeStayEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>HomeStayEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -320,6 +330,9 @@
     <Content Include="Views\Home\Properties.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\HeaderHome.cshtml" />
+    <Content Include="Views\Home\AboutUsHome.cshtml" />
+    <Content Include="Views\Detail\Product.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
     <EntityDeploy Include="Models\HomeStayEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HomeStayEntities.Designer.cs</LastGenOutput>
@@ -327,8 +340,6 @@
     <Content Include="Models\HomeStayEntities.edmx.diagram">
       <DependentUpon>HomeStayEntities.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Home\AboutUsHome.cshtml" />
-    <Content Include="Views\Detail\Product.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

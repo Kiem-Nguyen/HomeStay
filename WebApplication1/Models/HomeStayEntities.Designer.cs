@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\kiem.nguyen\Documents\Visual Studio 2015\Projects\HomeStayInVietNam\WebApplication1\Models\HomeStayEntities.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\Models\HomeStayEntities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
