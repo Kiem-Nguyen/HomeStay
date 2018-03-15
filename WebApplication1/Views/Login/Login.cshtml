@@ -1,10 +1,8 @@
 ﻿@model  Account
 
-@{
-    bool? success = ViewBag.Success;
-}
+
 <!-- The Modal -->
-<div id="TheModal" class="modal hidden" data-success="@(success.HasValue ? success.Value : false)">
+<div id="TheModal" class="modal hidden">
     @using (Ajax.BeginForm("LoginAccount", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, new AjaxOptions { UpdateTargetId = "result" }, new { @class = "modal-content animate" }))
     {
         @Html.AntiForgeryToken()
@@ -39,34 +37,23 @@
         $("#login").on("click", function () {
             var UseName = $("input[name=UseName]").val();
             var PassWord = $("input[name=PassWord]").val();
-            debugger;
             $.ajax({
                 url: "@Url.Action("LoginAccount", "Login")",
                 type: "POST",
                 data: { PassWord: PassWord, UseName: UseName },
                 success: function (data) {
-                    location.reload();
+                    if (data.success == true)
+                        location.reload();
+                    else
+                    {
+                        $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
+                        $("input[name=PassWord]").val('');
+                    }
                 }, error: function (error) {
                     $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
                     $("input[name=PassWord]").val('');
                 }
             });
         });
-
-        var success = $("#TheModal").data("success");
-        if (success == false || success == "false") {
-            ActivePopup();
-        } else
-        {
-            //window.location.href = 'http://localhost:49951/home/index';
-        }
-
-        function ActivePopup() {
-            debugger;
-            $(".OpenModal").on("click",function () {
-                $('#TheModal').removeClass('hidden');
-            });
-        }
-
     })
 </script>

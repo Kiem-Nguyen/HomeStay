@@ -16,6 +16,13 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
+        public JsonResult Logout()
+        {
+            Session.Remove("User");
+            return Json(new { success = true });
+        }
+
+        [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult LoginAccount(Account objUser)
         {
@@ -27,13 +34,11 @@ namespace WebApplication1.Controllers
                     if (obj != null)
                     {
                         Session["User"] = obj as Account;
-                        ViewBag.Success = true;
-                        return View("Login", objUser);
+                        return Json(new { success = true });
                     }
                 }
             }
-            ViewBag.Success = false;
-            return RedirectToAction("UserDashBoard");
+            return Json(new { success = false });
         }
 
         public ActionResult UserDashBoard()

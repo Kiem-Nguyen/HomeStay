@@ -75,9 +75,21 @@
                                     var User = Session["User"] as WebApplication1.Models.Account;
                                     var name = User?.FirstName;
 
-                                    <li class="cta" style="width:auto; cursor: pointer"><a class="OpenModal">name</a></li>
+                                    <li class="cta" style="width:auto; cursor: pointer">
+                                        <div class="dropdown">
+                                            <input class="btn btn-primary dropdown-toggle" type="button" value="Hi @name" data-toggle="dropdown"/>
+                                            <ul class="dropdown-menu">
+                                                <li style="cursor: pointer"><a >Test 1</a></li>
+                                                <li style="cursor: pointer"><a >Test 2</a></li>
+                                                <li style="cursor: pointer"><a  class="logout-user">Logout</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
                                 }
-                                <li class="cta" style="width:auto; cursor: pointer"><a class="OpenModal">Login</a></li>
+                                else
+                                {
+                                    <li class="cta" style="width:auto; cursor: pointer"><a class="OpenModal">Login</a></li>
+                                }
                             </ul>
                         </nav>
                     </div>
@@ -159,11 +171,34 @@
 
         $('.CloseModal').click(function () {
             $('#TheModal').addClass('hidden');
+            $("input[name=UseName]").val('');
+            $("input[name=PassWord]").val('');
+            $('.error-login-text').html('');
+        });
+
+        $('.logout-user').click(function () {
+            $.ajax({
+                url: "@Url.Action("Logout", "Login")",
+                type: "POST",
+                data: {},
+                success: function (data) {
+                    if (data.success == true)
+                        location.reload();
+                    else
+                    {
+                    }
+                }, error: function (error) {
+                    alert("error logout");
+                }
+            });
         });
 
         $(window).click(function (e) {
             if (e.target.id == 'TheModal') {
                 $('#TheModal').addClass('hidden');
+                $("input[name=UseName]").val('');
+                $("input[name=PassWord]").val('');
+                $('.error-login-text').html('');
             }
         });
     });
