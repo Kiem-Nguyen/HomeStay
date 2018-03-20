@@ -1,11 +1,9 @@
 ﻿@model  Account
 
 
-<!-- The Modal -->
+<!-- The Modal Login -->
 <div id="TheModal" class="modal hidden">
-    @using (Ajax.BeginForm("LoginAccount", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, new AjaxOptions { UpdateTargetId = "result" }, new { @class = "modal-content animate" }))
-    {
-        @Html.AntiForgeryToken()
+    <form class="modal-content animate">
         <div class="imgcontainer">
             <span class="close CloseModal" title="Close Modal">&times;</span>
             <img src="~/images/user.png" alt="Avatar" class="avatar">
@@ -13,7 +11,7 @@
 
         <div class="container">
             <div class="error-login-text">
-                
+
             </div>
 
             <label for="uname"><b>Username</b></label>
@@ -23,37 +21,207 @@
             <input type="password" placeholder="Enter Password" name="PassWord" required>
 
             <button type="button" id="login">Login</button>
-            <button type="submit">Sign In</button>
         </div>
 
         <div class="container" style="background-color:#f1f1f1">
-            <span class="psw">Forgot <a href="#">password?</a></span>
+            <span class="psw"><a style="cursor:pointer" class="Sign-Up-From-Login">Sign Up</a> | Forgot <a style="cursor:pointer" class="Forgot-Password">password</a> ?</span>
         </div>
-    }
+    </form>
 </div>
+
+<!-- The Modal Sign Up -->
+<div id="SignIn" class="modal signin hidden">
+    <form class="modal-content animate">
+        <div class="imgcontainer">
+            <span class="close CloseModal" title="Close Modal">&times;</span>
+            <h2>Sign-up User</h2>
+        </div>
+        <div class="container SignUpForm">
+            <div class="error-signin-text">
+
+            </div>
+
+            <div class="ContentSignUp">
+                <label for="fname"><b>FirstName</b></label>
+                <input type="text" placeholder="Enter your first name" name="FirstName" required>
+
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="UseName" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="PassWord" required>
+
+                <label for="psw"><b>Confirm Password</b></label>
+                <input type="password" placeholder="Enter Password Again" name="RePassWord" required>
+
+                <button type="button" id="SubmitSignUP">Submit</button>
+            </div>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <span class="psw"><a style="cursor:pointer" class="Login-From-Login">Sign In</a> | Forgot <a style="cursor:pointer" class="Forgot-Password">password </a>?</span>
+        </div>
+    </form>
+</div>
+
+<!-- The Modal Forgot password -->
+<div id="ForgotPass" class="modal hidden">
+    <form class="modal-content animate">
+        <div class="imgcontainer">
+            <span class="close CloseModal" title="Close Modal">&times;</span>
+            <h2>Forgot Password</h2>
+        </div>
+
+        <div class="container Forgot-Form">
+            <div class="error-forgotpass-text">
+
+            </div>
+
+            <div class="Content-forgot">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="UseName" required>
+
+                <label for="email"><b>Your Email</b></label>
+                <input type="text" placeholder="Enter your Email Address" name="EmailAddress" required>
+
+                <label for="psw"><b>New Password</b></label>
+                <input type="text" placeholder="New Password" name="PassWord" required>
+
+                <button type="button" id="SubmitForgot">Submit</button>
+            </div>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <span class="psw"><a style="cursor:pointer" class="Login-From-Login">Sign In</a> | <a style="cursor:pointer" class="Sign-Up-From-Login">Sign Up</a></span>
+        </div>
+    </form>
+</div>
+
+
 <script>
     $(function () {
+        $('input[name=PassWord]').keypress(function (e) {
+            if (e.which == 13) {//Enter key pressed
+                Login();
+            }
+        });
 
         $("#login").on("click", function () {
-            var UseName = $("input[name=UseName]").val();
-            var PassWord = $("input[name=PassWord]").val();
-            $.ajax({
-                url: "@Url.Action("LoginAccount", "Login")",
-                type: "POST",
-                data: { PassWord: PassWord, UseName: UseName },
-                success: function (data) {
-                    if (data.success == true)
-                        location.reload();
-                    else
-                    {
-                        $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
+            Login();
+        });
+
+        function Login() {
+            var UseName = $('#TheModal').find($("input[name=UseName]")).val();
+            var PassWord = $('#TheModal').find($("input[name=PassWord]")).val();
+
+            if (UseName != '' && PassWord != '') {
+                $.ajax({
+                    url: "@Url.Action("LoginAccount", "Login")",
+                    type: "POST",
+                    data: { PassWord: PassWord, UseName: UseName },
+                    success: function (data) {
+                        if (data.success == true)
+                            location.reload();
+                        else {
+                            $('.error-login-text').html('<h1 style="color:red; text-align:center;"><b>Username or password is not exits</b></h1><br />');
+                            $("input[name=PassWord]").val('');
+                        }
+                    }, error: function (error) {
+                        $('.error-login-text').html('<h1 style="color:red; text-align:center;"><b>Username or password does not exist</b></h1><br />');
                         $("input[name=PassWord]").val('');
                     }
-                }, error: function (error) {
-                    $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
-                    $("input[name=PassWord]").val('');
-                }
-            });
+                });
+            }
+        }
+
+        $('.Sign-Up-From-Login').on('click', function () {
+            $('#TheModal').addClass('hidden');
+            $('#ForgotPass').addClass('hidden');
+            $("input[name=UseName]").val('');
+            $("input[name=PassWord]").val('');
+            $('.error-login-text').html('');
+            $('.ContentSignUp').removeClass('hidden');
+            $('#textcomple').addClass('hidden');
+
+            $('#SignIn').removeClass('hidden');
         });
+
+        $('.Forgot-Password').on('click', function () {
+            $('#TheModal').addClass('hidden');
+            $('#SignIn').addClass('hidden');
+            $("input[name=UseName]").val('');
+            $("input[name=EmailAddress]").val('');
+            $("input[name=PassWord]").val('');
+            $('.error-forgotpass-text').html('');
+            $('#textcomple').addClass('hidden');
+            $('.Content-forgot').removeClass('hidden');
+
+            $('#ForgotPass').removeClass('hidden');
+        });
+
+        $('.Login-From-Login').on('click', function () {
+            $('#SignIn').addClass('hidden');
+            $('#ForgotPass').addClass('hidden');
+            $("input[name=UseName]").val('');
+            $("input[name=PassWord]").val('');
+            $("input[name=FirstName]").val('');
+            $("input[name=Lastname]").val('');
+            $('.error-signin-text').html('');
+            $('#textcomple').addClass('hidden');
+
+            $('#TheModal').removeClass('hidden');
+        });
+
+        $("#SubmitForgot").on("click", function () {
+            var UseName = $('#ForgotPass').find($("input[name=UseName]")).val();
+            var EmailAddress = $('#ForgotPass').find($("input[name=EmailAddress]")).val();
+            var PassWord = $('#ForgotPass').find($("input[name=PassWord]")).val();
+
+            if (UseName != '' && EmailAddress != '') {
+                $.ajax({
+                    url: "@Url.Action("ForgotPassword", "Login")",
+                    type: "POST",
+                    data: { UseName: UseName, EmailAddress: EmailAddress, PassWord: PassWord },
+                    success: function (data) {
+                        if (data.success == true) {
+                            $('.Content-forgot').addClass('hidden');
+                            $('.Forgot-Form').append('<h1 id="textcomple" style="color:red; text-align:center;"><b>Change password Comple</b></h1><br />');
+                        }
+                        else {
+                            $('.error-forgotpass-text').html('<h3 style="color:red; text-align:center"><b>Your account or email does not exist</b></h3><br />');
+                        }
+                    }, error: function (error) {
+                        $('.error-forgotpass-text').html('<h3 style="color:red; text-align:center;"><b>Error</b></h3><br />');
+                    }
+                });
+            }
+        });
+
+        $("#SubmitSignUP").on("click", function () {
+            var FirstName = $('#SignIn').find($("input[name=FirstName]")).val();
+            var UseName = $('#SignIn').find($("input[name=UseName]")).val();
+            var PassWord = $('#SignIn').find($("input[name=PassWord]")).val();
+            var RePassWord = $('#SignIn').find($("input[name=RePassWord]")).val();
+
+            if (PassWord == RePassWord && UseName != '' && PassWord != '') {
+                $.ajax({
+                    url: "@Url.Action("SignUpAccount", "Login")",
+                    type: "POST",
+                    data: { FirstName: FirstName, UseName: UseName, PassWord: PassWord },
+                    success: function (data) {
+                        if (data.success == true) {
+                            $('.Content-forgot').addClass('hidden');
+                            $('.SignUpForm').append('<h1 id="textcomple" style="color:red; text-align:center;"><b>Sign up Comple</b></h1><br />');
+                        }
+                        else {
+                            $('.error-signin-text').html('<h2 style="color:red; text-align:center"><b>Username is exist, please enter other username</b></h2><br />');
+                        }
+                    }, error: function (error) {
+                        $('.error-signin-text').html('<h2 style="color:red; text-align:center;"><b>Error</b></h2><br />');
+                    }
+                });
+            }
+        });
+
     })
 </script>

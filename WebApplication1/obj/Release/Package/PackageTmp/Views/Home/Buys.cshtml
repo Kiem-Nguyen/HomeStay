@@ -1,0 +1,297 @@
+﻿@{
+    ViewBag.Title = "Buys";
+    Layout = "~/Views/Share/_Layout.cshtml";
+}
+@model IEnumerable<HomeStayViewModel>
+
+<div class="fh5co-page-title" style="background-image: url(images/slide_6.jpg);">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 animate-box">
+                <h1><span class="colored">Buy</span> Properties</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="best-deal">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading" data-animate-effect="fadeIn">
+                <input class="form-control" id="myInput" type="text" placeholder="Please enter to search..">
+                <br />
+            </div>
+        </div>
+
+        <div class="row filter-Search">
+
+            @{
+                foreach (var item in Model)
+                {
+                    var pricesale = item.HomeStayModel.Price - item.HomeStayModel.Price * item.HomeStayModel.Sale / 100;
+                    <div class="col-md-4 item-block animate-box count-data" data-animate-effect="fadeIn">
+                        <div class="fh5co-property">
+                            <figure>
+                                <a href="@Url.Action("Product", "Detail", new { id = item.IDHomeStay })">
+                                    <img src="@item.ImageList[0].Image" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                </a>
+                                @if (item.HomeStayModel.Sale.HasValue && item.HomeStayModel.Sale.Value > 0)
+                                {
+                                    <span class="tag">-@item.HomeStayModel.Sale %</span>
+                                }
+                                <span class="tag-type">@item.HomeStayModel.TypeHourse/@item.City</span>
+                            </figure>
+                            <div class="fh5co-property-innter">
+                                <div class="price-status">
+                                    <span class="price" style="color: lightsalmon">@item.HomeStayModel.Name</span>
+                                </div>
+                                <div class="price-status">
+                                    @if (item.HomeStayModel.Sale.HasValue && item.HomeStayModel.Sale.Value > 0)
+                                    {
+                                        <span style="text-decoration: line-through; color: red" class="price">$@item.HomeStayModel.Price.Value.ToString("#.##")</span>
+                                    }
+                                    <span class="price">  $@(pricesale != 0 ? pricesale.Value.ToString("#.##") : "")</span>
+                                </div>
+                                <p class="ellipsis-text">@item.HomeStayModel.Description</p>
+                            </div>
+                            <p class="fh5co-property-specification">
+                                <span><strong>3500</strong> Sq Ft</span>  <span><strong>@item.HomeStayModel.Beds</strong> Beds</span>  <span><strong>@item.HomeStayModel.Baths</strong> Baths</span>  <span><strong>@item.HomeStayModel.Garages</strong> Garages</span>
+                            </p>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center animate-box pagination-head" data-animate-effect="fadeIn">
+                <nav>
+                    <ul class="pagination">
+                        <li class="disabled bt-previous">
+                            <span style="cursor: pointer">Previous</span>
+                        </li>
+                    </ul>
+                    <ul class="pagination append-page">
+
+                    </ul>
+                    <ul class="pagination">
+                        <li class="disabled bt-next">
+                            <span style="cursor: pointer">Next</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="fh5co-testimonial">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
+                <h2>Happy Clients</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+                <blockquote>
+                    <p>&ldquo; She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
+                    <p><span class="fh5co-author"><cite>Jason Davidson</cite></span><i class="icon twitter-color icon-twitter pull-right"></i></p>
+                </blockquote>
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+                <blockquote>
+                    <p>&ldquo; Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. She had a last view back on the skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
+                    <p><span class="fh5co-author"><cite>Kyle Smith</cite></span><i class="icon googleplus-color icon-google-plus pull-right"></i></p>
+                </blockquote>
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+
+                <blockquote>
+                    <p>&ldquo; The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. S	he had a last view back on the skyline of her hometown Bookmarksgrove. &rdquo;</p>
+                    <p><span class="fh5co-author"><cite>Rick Cook</cite></span><i class="icon facebook-color icon-facebook pull-right"></i></p>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="fh5co-agents">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading white animate-box" data-animate-effect="fadeIn">
+                <h2>Our Trusted Agents</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+                <div class="fh5co-agent">
+                    <figure>
+                        <img src="~/images/testimonial_person2.jpg" alt="Free Website Template by FreeHTML5.co">
+                    </figure>
+                    <h3>John Doe</h3>
+                    <p>Veniam laudantium rem odio quod, beatae voluptates natus animi fugiat provident voluptatibus. Debitis assumenda, possimus ducimus omnis.</p>
+                    <p><a href="#" class="btn btn-primary btn-outline">Contact Me</a></p>
+                </div>
+
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+                <div class="fh5co-agent">
+                    <figure>
+                        <img src="~/images/testimonial_person3.jpg" alt="Free Website Template by FreeHTML5.co">
+                    </figure>
+                    <h3>John Doe</h3>
+                    <p>Veniam laudantium rem odio quod, beatae voluptates natus animi fugiat provident voluptatibus. Debitis assumenda, possimus ducimus omnis.</p>
+                    <p><a href="#" class="btn btn-primary btn-outline">Contact Me</a></p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+                <div class="fh5co-agent">
+                    <figure>
+                        <img src="~/images/testimonial_person4.jpg" alt="Free Website Template by FreeHTML5.co">
+                    </figure>
+                    <h3>John Doe</h3>
+                    <p>Veniam laudantium rem odio quod, beatae voluptates natus animi fugiat provident voluptatibus. Debitis assumenda, possimus ducimus omnis.</p>
+                    <p><a href="#" class="btn btn-primary btn-outline">Contact Me</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="fh5co-cta" style="background-image: url(images/slide_4.jpg);">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="col-md-12 text-center animate-box">
+            <h3>We Try To Update The Site Everyday</h3>
+            <p><a href="#" class="btn btn-primary btn-outline with-arrow">Get started now! <i class="icon-arrow-right"></i></a></p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('#myInput').keypress(function (e) {
+            if (e.which == 13) {
+                Search($("#myInput").val());
+            }
+        });
+
+        paging();
+    });
+
+    function paging() {
+        var count = $(".filter-Search").find('.count-data');
+        pageSize = 3;
+        var page = 0;
+        if (count == 0 || count.length / pageSize < 2)
+        {
+            $('.pagination-head').html('');
+        }
+        if (count.length % pageSize == 0) {
+            page = parseInt(count.length / pageSize);
+        }
+        else {
+            page = parseInt(count.length / pageSize) + 1;
+        }
+
+        $('.append-page').html('');
+        for (var i = 1; i <= page ; i++)
+        {
+            var item = '';
+            if (i == 1)
+            {
+                item = '<li class="active"><span style="cursor: pointer">' + i + '</span></li>';
+            }
+            else
+            {
+                item = '<li class=""><span style="cursor: pointer">' + i + '</span></li>';
+            }
+            $('.append-page').append(item);
+        }
+
+        showPage = function (page) {
+            $(".count-data").hide();
+            $(".count-data").each(function (n) {
+                if (n >= pageSize * (page - 1) && n < pageSize * page)
+                    $(this).show();
+            });
+        }
+
+        showPage(1);
+
+        $(".pagination li span").click(function () {
+            $(".pagination li").removeClass("active");
+            $(this).parent().addClass("active");
+            showPage(parseInt($(this).text()))
+        });
+    }
+
+    function Search(key) {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("SearchIndex","Search")",
+            data: { key: key },
+            dataType: "json",
+            success: function (data, status) {
+                $(".filter-Search").html("");
+                if (data.length == 0) {
+                    var html = '<div class="col-md-12 count-data" data-animate-effect="fadeIn"><h1 style="text-align: center">Khong co du lieu can tim</h1></div>';
+                    $(".filter-Search").append(html);
+                    paging();
+                }
+                else {
+                    for (var i = 0; i < data.length; i++) {
+                        var edited = '';
+                        var edited2 = '';
+                        var pricesale = data[i].HomeStayModel.Price - data[i].HomeStayModel.Price * data[i].HomeStayModel.Sale / 100;
+                        if (data[i].HomeStayModel.Sale.HasValue && data[i].HomeStayModel.Sale.Value > 0) {
+                            edited = '<span class="tag">-' + data[i].HomeStayModel.Sale + '%</span>';
+                        }
+                        if (data[i].HomeStayModel.Sale.HasValue && data[i].HomeStayModel.Sale.Value > 0) {
+                            edited2 = '<span style="text-decoration: line-through; color: red" class="price">$' + data[i].HomeStayModel.Price.Value.ToString("#.##") + '</span>';
+                        }
+                        @*var url = '@Url.Action("Product", "Detail", new { id : data[i].IDHomeStay })';*@
+
+                        var html = '<div class="col-md-4 item-block count-data" data-animate-effect="fadeIn">' +
+                        '<div class="fh5co-property">' +
+                            '<figure>' +
+                                //'<a href="' + Url.Action("Product", "Detail", new { id: data[i].IDHomeStay }) + '">' +
+                                '<a href="/Detail/Product/' + data[i].IDHomeStay + '">' +
+                                    '<img src="' + data[i].ImageList[0].Image + '" alt="Free Website Templates FreeHTML5.co" class="img-responsive">' +
+                                '</a>' +
+                                edited +
+                                '<span class="tag-type">' + data[i].HomeStayModel.TypeHourse + '</span>' +
+                            '</figure>' +
+                            '<div class="fh5co-property-innter">' +
+                                '<div class="price-status">' +
+                                    '<span class="price" style="color: lightsalmon">' + data[i].HomeStayModel.Name + '</span>' +
+                                '</div>' +
+                                '<div class="price-status">' +
+                                    edited2 +
+                                    '<span class="price">  $' + pricesale + '</span>' +
+                                '</div>' +
+                                '<p class="ellipsis-text">' + data[i].HomeStayModel.Description + '</p>' +
+                            '</div>' +
+                            '<p class="fh5co-property-specification">' +
+                                '<span><strong>3500</strong> Sq Ft</span>  <span><strong>' + data[i].HomeStayModel.Beds + '</strong> Beds</span>  <span><strong>' + data[i].HomeStayModel.Baths + '</strong> Baths</span>  <span><strong>' + data[i].HomeStayModel.Garages + '</strong> Garages</span>' +
+                            '</p>' +
+                        '</div>' +
+                    '</div>';
+
+                        $(".filter-Search").append(html);
+                    }
+                }
+                ellipsisText();
+                paging();
+            },
+            error: function (data) {
+                $(".filter-Search").html("");
+                var html = '<div class="col-md-12 count-data" data-animate-effect="fadeIn"><h1 style="text-align: center">Khong co du lieu can tim</h1></div>';
+                $(".filter-Search").append(html);
+                paging();
+            }
+        });
+    };
+
+</script>

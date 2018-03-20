@@ -32,5 +32,6 @@ namespace WebApplication1.Models
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<HomeStay> HomeStays { get; set; }
         public virtual DbSet<ImageHomeStay> ImageHomeStays { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

@@ -10,22 +10,9 @@
     <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="About_Us_Admin">
     <Key>
       <PropertyRef Name="ID_User" />
-      <PropertyRef Name="Description" />
-      <PropertyRef Name="Phone" />
-      <PropertyRef Name="Email" />
     </Key>
     <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -45,6 +32,8 @@
     <Property Name="TypeUser" Type="Int32" />
     <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Adress">
     <Key>
@@ -88,14 +77,24 @@
     <Property Name="IDHomeStay" Type="Int32" />
     <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <EntityContainer Name="HomeStayVNEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="About_Us_Admins" EntityType="Self.About_Us_Admin" />
     <EntitySet Name="Accounts" EntityType="Self.Account" />
     <EntitySet Name="Adresses" EntityType="Self.Adress" />
     <EntitySet Name="Events" EntityType="Self.Event" />
     <EntitySet Name="HomeStays" EntityType="Self.HomeStay" />
     <EntitySet Name="ImageHomeStays" EntityType="Self.ImageHomeStay" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
   </EntityContainer>
 </Schema>

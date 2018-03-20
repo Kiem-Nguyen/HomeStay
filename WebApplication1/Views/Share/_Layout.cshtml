@@ -167,6 +167,7 @@
 
         $(".OpenModal").click(function () {
             $('#TheModal').removeClass('hidden');
+            $("#TheModal:text:visible:first").focus();
         });
 
         $('.CloseModal').click(function () {
@@ -174,6 +175,13 @@
             $("input[name=UseName]").val('');
             $("input[name=PassWord]").val('');
             $('.error-login-text').html('');
+
+            $('#SignIn').addClass('hidden');
+            $("input[name=UseName]").val('');
+            $("input[name=PassWord]").val('');
+            $("input[name=FirstName]").val('');
+            $("input[name=Lastname]").val('');
+            $('.error-signin-text').html('');
         });
 
         $('.logout-user').click(function () {
@@ -199,6 +207,22 @@
                 $("input[name=UseName]").val('');
                 $("input[name=PassWord]").val('');
                 $('.error-login-text').html('');
+            }
+
+            if (e.target.id == 'SignIn') {
+                $('#SignIn').addClass('hidden');
+                $("input[name=UseName]").val('');
+                $("input[name=PassWord]").val('');
+                $("input[name=FirstName]").val('');
+                $("input[name=Lastname]").val('');
+                $('.error-signin-text').html('');
+            }
+
+            if (e.target.id == 'ForgotPass') {
+                $('#ForgotPass').addClass('hidden');
+                $("input[name=UseName]").val('');
+                $("input[name=EmailAddress]").val('');
+                $('.error-forgotpass-text').html('');
             }
         });
     });

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<HomeStayViewModel>
+
+<aside id="fh5co-hero" clsas="js-fullheight">
+    <div class="flexslider js-fullheight">
+        <ul class="slides">
+            @{
+                foreach (var item in Model)
+                {
+                    var pricesale = item.HomeStayModel.Price - item.HomeStayModel.Price * item.HomeStayModel.Sale / 100;
+                    <li style="background-image: url(@item.ImageList[0].Image)">
+                        <div class="container">
+                            <div class="col-md-12 text-center js-fullheight fh5co-property-brief slider-text">
+                                <div class="fh5co-property-brief-inner">
+                                    <div class="fh5co-box">
+                                        <h3><a href="#">@item.HomeStayModel.Name</a></h3>
+                                        <div class="price-status">
+                                            <span class="price">
+                                                $@(pricesale != 0 ? pricesale.Value.ToString("#.##") : "")
+                                                @if (item.HomeStayModel.Sale.HasValue && item.HomeStayModel.Sale.Value > 0)
+                                                {
+                                                    <a href="#" class="tag">@item.HomeStayModel.Sale%</a>
+                                                }
+                                            </span>
+                                            @if (item.HomeStayModel.Sale.HasValue && item.HomeStayModel.Sale.Value > 0)
+                                            {
+                                                <span style="text-decoration: line-through; color: red" class="price">$@item.HomeStayModel.Price.Value.ToString("#.##")</span>
+                                            }
+                                        </div>
+                                        <p>@item.HomeStayModel.Description</p>
+                                        <p class="fh5co-property-specification">
+                                            <span><strong>3500</strong> Sq Ft</span>  <span><strong>@item.HomeStayModel.Beds</strong> Beds</span>  <span><strong>@item.HomeStayModel.Baths</strong> Baths</span>  <span><strong>@item.HomeStayModel.Garages</strong> Garages</span>
+                                        </p>
+                                        <p><a href="@Url.Action("Product","Detail", new { id = item.IDHomeStay })" class="btn btn-primary">Learn more</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</aside>

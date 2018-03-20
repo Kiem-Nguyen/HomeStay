@@ -20,5 +20,7 @@ namespace WebApplication1.Models
         public Nullable<int> TypeUser { get; set; }
         public string FirstName { get; set; }
         public string Lastname { get; set; }
+        public string PhoneNumber { get; set; }
+        public string EmailAddress { get; set; }
     }
 }

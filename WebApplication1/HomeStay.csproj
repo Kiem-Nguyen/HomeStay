@@ -135,6 +135,10 @@
     <Content Include="App_Data\abc_log.ldf">
       <DependentUpon>abc.mdf</DependentUpon>
     </Content>
+    <Content Include="Areas\AdminControl\Css\animate.css" />
+    <Content Include="Areas\AdminControl\Css\style.css" />
+    <Content Include="Areas\AdminControl\Images\photo_bg.jpg" />
+    <Content Include="Areas\AdminControl\Views\web.config" />
     <Content Include="css\animate.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\flexslider.css" />
@@ -187,6 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\AdminControl\AdminControlAreaRegistration.cs" />
+    <Compile Include="Areas\AdminControl\Controllers\AdminController.cs" />
+    <Compile Include="Areas\AdminControl\Fillter\ProtectAttribute.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -229,6 +236,9 @@
       <DependentUpon>HomeStayEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ImageHomeStay.cs">
+      <DependentUpon>HomeStayEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>HomeStayEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -333,6 +343,7 @@
     <Content Include="Views\Home\AboutUsHome.cshtml" />
     <Content Include="Views\Detail\Product.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Admin\Login.cshtml" />
     <EntityDeploy Include="Models\HomeStayEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HomeStayEntities.Designer.cs</LastGenOutput>
@@ -340,6 +351,7 @@
     <Content Include="Models\HomeStayEntities.edmx.diagram">
       <DependentUpon>HomeStayEntities.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -351,6 +363,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\AdminControl\Models\" />
+    <Folder Include="Areas\AdminControl\Views\Shared\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
   <PropertyGroup>

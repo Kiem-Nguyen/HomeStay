@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Share/_Layout.cshtml";
+}
+@model IEnumerable<HomeStayViewModel>
+
+@{
+    Html.RenderAction("HeaderHome", "Home");
+}
+
+<div id="best-deal">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
+                <h2>We are Offering the Best Real Estate Deals</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+            </div>
+        </div>
+
+        @{
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    var pricesale = item.HomeStayModel.Price - item.HomeStayModel.Price * item.HomeStayModel.Sale / 100;
+                    <div class="col-md-4 item-block animate-box count-data" data-animate-effect="fadeIn">
+                        <div class="fh5co-property">
+                            <figure>
+                                <a href="@Url.Action("Product", "Detail", new { id = item.IDHomeStay })">
+                                    <img src="@item.ImageList[0].Image" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+                                </a>
+                                @if (item.HomeStayModel.Sale.HasValue && item.HomeStayModel.Sale.Value > 0)
+                                {
+                                    <span class="tag">-@item.HomeStayModel.Sale %</span>
+                                }
+                                <span class="tag-type">@item.HomeStayModel.TypeHourse/@item.City</span>
+                            </figure>
+                            <div class="fh5co-property-innter">
+                                <div class="price-status">
+                                    <span class="price" style="color: lightsalmon">@item.HomeStayModel.Name</span>
+                                </div>
+                                <div class="price-status">
+                                    @if (item.HomeStayModel.Sale.HasValue && item.HomeStayModel.Sale.Value > 0)
+                                    {
+                                        <span style="text-decoration: line-through; color: red" class="price">$@item.HomeStayModel.Price.Value.ToString("#.##")</span>
+                                    }
+                                    <span class="price">  $@(pricesale != 0 ? pricesale.Value.ToString("#.##") : "")</span>
+                                </div>
+                                <p class="ellipsis-text">@item.HomeStayModel.Description</p>
+                            </div>
+                            <p class="fh5co-property-specification">
+                                <span><strong>3500</strong> Sq Ft</span>  <span><strong>@item.HomeStayModel.Beds</strong> Beds</span>  <span><strong>@item.HomeStayModel.Baths</strong> Baths</span>  <span><strong>@item.HomeStayModel.Garages</strong> Garages</span>
+                            </p>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+
+    </div>
+</div>
+
+<div id="fh5co-testimonial">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
+                <h2>Happy Clients</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+                <blockquote>
+                    <p>&ldquo; She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
+                    <p><span class="fh5co-author"><cite>Jason Davidson</cite></span><i class="icon twitter-color icon-twitter pull-right"></i></p>
+                </blockquote>
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+                <blockquote>
+                    <p>&ldquo; Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. She had a last view back on the skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
+                    <p><span class="fh5co-author"><cite>Kyle Smith</cite></span><i class="icon googleplus-color icon-google-plus pull-right"></i></p>
+                </blockquote>
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+
+                <blockquote>
+                    <p>&ldquo; The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. S	he had a last view back on the skyline of her hometown Bookmarksgrove. &rdquo;</p>
+                    <p><span class="fh5co-author"><cite>Rick Cook</cite></span><i class="icon facebook-color icon-facebook pull-right"></i></p>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    Html.RenderAction("AboutUsHome", "Home");
+}
+
+<div class="fh5co-cta" style="background-image: url(images/slide_4.jpg);">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
+            <h3>We Try To Update The Site Everyday</h3>
+            <p><a href="#" class="btn btn-primary btn-outline with-arrow">Get started now! <i class="icon-arrow-right"></i></a></p>
+        </div>
+    </div>
+</div>

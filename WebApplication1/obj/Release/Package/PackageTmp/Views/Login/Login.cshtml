@@ -1,0 +1,111 @@
+﻿@model  Account
+
+
+<!-- The Modal Login -->
+<div id="TheModal" class="modal hidden">
+    <form class="modal-content animate">
+        <div class="imgcontainer">
+            <span class="close CloseModal" title="Close Modal">&times;</span>
+            <img src="~/images/user.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+            <div class="error-login-text">
+
+            </div>
+
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="UseName" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="PassWord" required>
+
+            <button type="button" id="login">Login</button>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <span class="psw"><a href="#">Sign in </a>|Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
+</div>
+
+<!-- The Modal Login -->
+<div id="SignIn" class="modal signin hidden">
+    <form class="modal-content animate">
+        <div class="container">
+            <div class="error-signin-text">
+
+            </div>
+
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="UseNameSignIn" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="PassWordSignIn" required>
+
+            <label for="psw"><b>Confirm Password</b></label>
+            <input type="password" placeholder="Enter Password Again" name="RePassWordSignIn" required>
+
+            <button type="button" id="login">Submit</button>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    $(function () {
+        $("#login").on("click", function () {
+            var UseName = $("input[name=UseName]").val();
+            var PassWord = $("input[name=PassWord]").val();
+            $.ajax({
+                url: "@Url.Action("LoginAccount", "Login")",
+                type: "POST",
+                data: { PassWord: PassWord, UseName: UseName },
+                success: function (data) {
+                    if (data.success == true)
+                        location.reload();
+                    else {
+                        $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
+                        $("input[name=PassWord]").val('');
+                    }
+                }, error: function (error) {
+                    $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
+                    $("input[name=PassWord]").val('');
+                }
+            });
+        });
+
+        $("#sign-in").on("click", function () {
+            var UseName = $("input[name=UseNameSignIn]").val();
+            var PassWord = $("input[name=PassWordSignIn]").val();
+            var RePassWord = $("input[name=RePassWordSignIn]").val();
+
+            if (PassWord != RePassWord)
+            {
+                $('.error-signin-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Please input re-password match with above password box!!</b></label><br />');
+            }
+            $.ajax({
+                url: "@Url.Action("SignInAccount", "Login")",
+                type: "POST",
+                data: { PassWord: PassWord, UseName: UseName },
+                success: function (data) {
+                    if (data.success == true)
+                        location.reload();
+                    else {
+                        $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
+                        $("input[name=PassWord]").val('');
+                    }
+                }, error: function (error) {
+                    $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
+                    $("input[name=PassWord]").val('');
+                }
+            });
+        });
+
+
+    })
+</script>
