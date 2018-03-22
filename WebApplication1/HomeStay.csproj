@@ -136,8 +136,130 @@
       <DependentUpon>abc.mdf</DependentUpon>
     </Content>
     <Content Include="Areas\AdminControl\Css\animate.css" />
+    <Content Include="Areas\AdminControl\Css\bootstrap-responsive.min.css" />
+    <Content Include="Areas\AdminControl\Css\bootstrap-wysihtml5.css" />
+    <Content Include="Areas\AdminControl\Css\bootstrap.min.css" />
+    <Content Include="Areas\AdminControl\Css\colorpicker.css" />
+    <Content Include="Areas\AdminControl\Css\datepicker.css" />
+    <Content Include="Areas\AdminControl\Css\font-awesome.css" />
+    <Content Include="Areas\AdminControl\Css\fullcalendar.css" />
+    <Content Include="Areas\AdminControl\Css\jquery.easy-pie-chart.css" />
+    <Content Include="Areas\AdminControl\Css\jquery.gritter.css" />
+    <Content Include="Areas\AdminControl\Css\matrix-login.css" />
+    <Content Include="Areas\AdminControl\Css\matrix-media.css" />
+    <Content Include="Areas\AdminControl\Css\matrix-style.css" />
+    <Content Include="Areas\AdminControl\Css\select2.css" />
     <Content Include="Areas\AdminControl\Css\style.css" />
+    <Content Include="Areas\AdminControl\Css\uniform.css" />
+    <Content Include="Areas\AdminControl\font-awesome\css\font-awesome.css" />
+    <Content Include="Areas\AdminControl\font-awesome\fontawesome-webfont.svg" />
+    <Content Include="Areas\AdminControl\font-awesome\font\fontawesome-webfont.svg" />
+    <Content Include="Areas\AdminControl\Images\breadcrumb.png" />
+    <Content Include="Areas\AdminControl\Images\demo\av1.jpg" />
+    <Content Include="Areas\AdminControl\Images\demo\av2.jpg" />
+    <Content Include="Areas\AdminControl\Images\demo\av3.jpg" />
+    <Content Include="Areas\AdminControl\Images\demo\av4.jpg" />
+    <Content Include="Areas\AdminControl\Images\demo\av5.jpg" />
+    <Content Include="Areas\AdminControl\Images\demo\demo-image1.jpg" />
+    <Content Include="Areas\AdminControl\Images\demo\demo-image2.jpg" />
+    <Content Include="Areas\AdminControl\Images\demo\demo-image3.jpg" />
+    <Content Include="Areas\AdminControl\Images\demo\envelope.png" />
+    <Content Include="Areas\AdminControl\Images\gallery\imgbox1.jpg" />
+    <Content Include="Areas\AdminControl\Images\gallery\imgbox2.jpg" />
+    <Content Include="Areas\AdminControl\Images\gallery\imgbox3.jpg" />
+    <Content Include="Areas\AdminControl\Images\gallery\imgbox4.jpg" />
+    <Content Include="Areas\AdminControl\Images\gallery\imgbox5.jpg" />
+    <Content Include="Areas\AdminControl\Images\glyphicons-halflings-white.png" />
+    <Content Include="Areas\AdminControl\Images\gritter.png" />
+    <Content Include="Areas\AdminControl\Images\hue.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\book.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\cabinet.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\calendar.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\client.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\database.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\download.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\graph.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\home.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\lock.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\mail.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\pdf.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\people.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\piechart.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\search.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\shopping-bag.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\survey.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\tag.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\user.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\wallet.png" />
+    <Content Include="Areas\AdminControl\Images\icons\16\web.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\book.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\cabinet.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\calendar.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\client.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\dashboard.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\database.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\download.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\graph.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\home.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\lock.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\mail.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\pdf.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\people.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\piechart.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\search.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\shopping-bag.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\survey.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\tag.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\user.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\wallet.png" />
+    <Content Include="Areas\AdminControl\Images\icons\32\web.png" />
+    <Content Include="Areas\AdminControl\Images\larrow.png" />
+    <Content Include="Areas\AdminControl\Images\line.png" />
+    <Content Include="Areas\AdminControl\Images\logo.png" />
+    <Content Include="Areas\AdminControl\Images\menu-active.png" />
     <Content Include="Areas\AdminControl\Images\photo_bg.jpg" />
+    <Content Include="Areas\AdminControl\Images\rarrow.png" />
+    <Content Include="Areas\AdminControl\Images\saturation.png" />
+    <Content Include="Areas\AdminControl\Images\select2.png" />
+    <Content Include="Areas\AdminControl\Images\spinner.gif" />
+    <Content Include="Areas\AdminControl\Images\sprite.png" />
+    <Content Include="Areas\AdminControl\js\bootstrap-colorpicker.js" />
+    <Content Include="Areas\AdminControl\js\bootstrap-datepicker.js" />
+    <Content Include="Areas\AdminControl\js\bootstrap-wysihtml5.js" />
+    <Content Include="Areas\AdminControl\js\bootstrap.js" />
+    <Content Include="Areas\AdminControl\js\bootstrap.min.js" />
+    <Content Include="Areas\AdminControl\js\excanvas.min.js" />
+    <Content Include="Areas\AdminControl\js\fullcalendar.min.js" />
+    <Content Include="Areas\AdminControl\js\jquery.dataTables.min.js" />
+    <Content Include="Areas\AdminControl\js\jquery.easy-pie-chart.js" />
+    <Content Include="Areas\AdminControl\js\jquery.flot.crosshair.js" />
+    <Content Include="Areas\AdminControl\js\jquery.flot.min.js" />
+    <Content Include="Areas\AdminControl\js\jquery.flot.pie.js" />
+    <Content Include="Areas\AdminControl\js\jquery.flot.pie.min.js" />
+    <Content Include="Areas\AdminControl\js\jquery.flot.resize.min.js" />
+    <Content Include="Areas\AdminControl\js\jquery.flot.stack.js" />
+    <Content Include="Areas\AdminControl\js\jquery.gritter.min.js" />
+    <Content Include="Areas\AdminControl\js\jquery.min.js" />
+    <Content Include="Areas\AdminControl\js\jquery.peity.min.js" />
+    <Content Include="Areas\AdminControl\js\jquery.ui.custom.js" />
+    <Content Include="Areas\AdminControl\js\jquery.uniform.js" />
+    <Content Include="Areas\AdminControl\js\jquery.validate.js" />
+    <Content Include="Areas\AdminControl\js\jquery.wizard.js" />
+    <Content Include="Areas\AdminControl\js\masked.js" />
+    <Content Include="Areas\AdminControl\js\matrix.calendar.js" />
+    <Content Include="Areas\AdminControl\js\matrix.charts.js" />
+    <Content Include="Areas\AdminControl\js\matrix.chat.js" />
+    <Content Include="Areas\AdminControl\js\matrix.dashboard.js" />
+    <Content Include="Areas\AdminControl\js\matrix.form_common.js" />
+    <Content Include="Areas\AdminControl\js\matrix.form_validation.js" />
+    <Content Include="Areas\AdminControl\js\matrix.interface.js" />
+    <Content Include="Areas\AdminControl\js\matrix.js" />
+    <Content Include="Areas\AdminControl\js\matrix.login.js" />
+    <Content Include="Areas\AdminControl\js\matrix.popover.js" />
+    <Content Include="Areas\AdminControl\js\matrix.tables.js" />
+    <Content Include="Areas\AdminControl\js\matrix.wizard.js" />
+    <Content Include="Areas\AdminControl\js\select2.min.js" />
+    <Content Include="Areas\AdminControl\js\wysihtml5-0.3.0.js" />
     <Content Include="Areas\AdminControl\Views\web.config" />
     <Content Include="css\animate.css" />
     <Content Include="css\bootstrap.css" />
@@ -185,15 +307,17 @@
     </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="Views\buy.html" />
-    <Content Include="Views\contact.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\AdminControl\AdminControlAreaRegistration.cs" />
+    <Compile Include="Areas\AdminControl\Controllers\AddonsController.cs" />
     <Compile Include="Areas\AdminControl\Controllers\AdminController.cs" />
+    <Compile Include="Areas\AdminControl\Controllers\ErrorController.cs" />
+    <Compile Include="Areas\AdminControl\Controllers\FormsController.cs" />
     <Compile Include="Areas\AdminControl\Fillter\ProtectAttribute.cs" />
+    <Compile Include="Areas\AdminControl\Models\FormViewModel.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -351,6 +475,33 @@
     <Content Include="Models\HomeStayEntities.edmx.diagram">
       <DependentUpon>HomeStayEntities.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\AdminControl\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\AdminControl\font-awesome\font\fontawesome-webfont.eot" />
+    <Content Include="Areas\AdminControl\font-awesome\font\fontawesome-webfont.ttf" />
+    <Content Include="Areas\AdminControl\font-awesome\font\fontawesome-webfont.woff" />
+    <Content Include="Areas\AdminControl\font-awesome\font\FontAwesome.otf" />
+    <Content Include="Areas\AdminControl\font-awesome\fontawesome-webfont.eot" />
+    <Content Include="Areas\AdminControl\font-awesome\fontawesome-webfont.ttf" />
+    <Content Include="Areas\AdminControl\font-awesome\fontawesome-webfont.woff" />
+    <Content Include="Areas\AdminControl\font-awesome\FontAwesome.otf" />
+    <Content Include="Areas\AdminControl\Images\Thumbs.db" />
+    <Content Include="Areas\AdminControl\Images\demo\Thumbs.db" />
+    <Content Include="Areas\AdminControl\Images\icons\32\Thumbs.db" />
+    <Content Include="Areas\AdminControl\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Admin\ChartsAndGraphs.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Admin\Widgets.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Admin\Tables.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Forms\BasicForm.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Forms\Validation.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Forms\Wizard.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Admin\ButtonsIcons.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Addons\Dashboard.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Addons\Gallery.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Addons\Calendar.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Addons\Invoice.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Addons\Chat.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Error\PageNotFound.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Error\ServerError.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -362,11 +513,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\AdminControl\Models\" />
-    <Folder Include="Areas\AdminControl\Views\Shared\" />
-    <Folder Include="Views\Search\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

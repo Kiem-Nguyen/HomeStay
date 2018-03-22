@@ -11,11 +11,11 @@ namespace WebApplication1.Areas.AdminControl.Fillter
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var master = HttpContext.Current.Session["User"] as Account;
+            var master = HttpContext.Current.Session["UserAdmin"] as Account;
             if (master == null)
             {
                 HttpContext.Current.Session["Message"] = "Please login!";
-                HttpContext.Current.Response.Redirect("/AdminControl/Admin/LoginAdmin");
+                HttpContext.Current.Response.Redirect("/AdminControl/Admin/Login");
                 return;
             }
         }

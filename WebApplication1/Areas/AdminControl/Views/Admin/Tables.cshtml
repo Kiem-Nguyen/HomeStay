@@ -1,0 +1,335 @@
+﻿@{
+    ViewBag.Title = "Tables";
+    Layout = "~/Areas/AdminControl/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model WebApplication1.Areas.AdminControl.Models.FormViewModel
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="@Url.Action("Index","Admin")" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
+        <h1>Tables</h1>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="icon-th"></i> </span>
+                        <h5>Images Table</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Homestay Using (ID)</th>
+                                    <th>Url</th>
+                                    <th>Image</th>
+                                    <th>Content</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var itemImage in Model.ImageForm)
+                                    {
+                                        var nameHS = "";
+                                        foreach (var item in Model.HomestayForm)
+                                        {
+                                            if (item.ID_HomeStay == itemImage.IDHomeStay)
+                                            {
+                                                nameHS = item.Name;
+                                                break;
+                                            }
+                                        }
+                                        string idImage = "image" + @itemImage.IDImage.ToString();
+                                        <tr class="odd Image" id="@idImage">
+                                            <td>@itemImage.IDImage</td>
+                                            <td>@nameHS (@itemImage.IDHomeStay)</td>
+                                            <td>@itemImage.Image </td>
+                                            <td><img src="@itemImage.Image" style="width: 80px; height: auto" /></td>
+                                            <td>
+                                                <a href=""><span class="glyphicon glyphicon-plus-sign">Edit</span></a>
+                                                <a href=""><span style="color:red" class="glyphicon glyphicon-plus-sign">Remove</span></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <div class="widget-title">
+                            <span class="icon"> <i class="icon-th"></i> </span>
+                            <h5>Locations Table</h5>
+                        </div>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered table-striped with-check">
+                            <thead>
+                                <tr>
+                                    <th><i class="icon-resize-vertical"></i></th>
+                                    <th>Rendering engine</th>
+                                    <th>Browser</th>
+                                    <th>Platform(s)</th>
+                                    <th>Engine version</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Trident</td>
+                                    <td>
+                                        Internet
+                                        Explorer 4.0
+                                    </td>
+                                    <td>Win 95+</td>
+                                    <td class="center"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Trident</td>
+                                    <td>
+                                        Internet
+                                        Explorer 5.0
+                                    </td>
+                                    <td>Win 95+</td>
+                                    <td class="center">5</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Trident</td>
+                                    <td>
+                                        Internet
+                                        Explorer 4.0
+                                    </td>
+                                    <td>Win 95+</td>
+                                    <td class="center"> 4</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Trident</td>
+                                    <td>
+                                        Internet
+                                        Explorer 5.0
+                                    </td>
+                                    <td>Win 95+</td>
+                                    <td class="center">5</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Trident</td>
+                                    <td>
+                                        Internet
+                                        Explorer 5.5
+                                    </td>
+                                    <td>Win 95+</td>
+                                    <td class="center">5.5</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Trident</td>
+                                    <td>
+                                        Internet
+                                        Explorer 6
+                                    </td>
+                                    <td>Win 98+</td>
+                                    <td class="center">6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="icon-th"></i> </span>
+                        <h5>Static table with checkboxes in box with padding</h5>
+                        <span class="label label-info">Featured</span>
+                    </div>
+                    <div class="widget-content ">
+                        <table class="table table-bordered table-striped with-check">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>
+                                    <th>Column name</th>
+                                    <th>Column name</th>
+                                    <th>Column name</th>
+                                    <th>Column name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Row 1</td>
+                                    <td>Row 2</td>
+                                    <td>Row 3</td>
+                                    <td>Row 4</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Row 1</td>
+                                    <td>Row 2</td>
+                                    <td>Row 3</td>
+                                    <td>Row 4</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Row 1</td>
+                                    <td>Row 2</td>
+                                    <td>Row 3</td>
+                                    <td>Row 4</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Row 1</td>
+                                    <td>Row 2</td>
+                                    <td>Row 3</td>
+                                    <td>Row 4</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Row 1</td>
+                                    <td>Row 2</td>
+                                    <td>Row 3</td>
+                                    <td>Row 4</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>Row 1</td>
+                                    <td>Row 2</td>
+                                    <td>Row 3</td>
+                                    <td>Row 4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="widget-box">
+                    <div class="widget-title" style="">
+                        <span class="icon"><i class="icon-th"></i></span>
+                        <h5>HomeStay table</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Summary</th>
+                                    <th>Adress</th>
+                                    <th>Price($)</th>
+                                    <th>Sale(%)</th>
+                                    <th>Description</th>
+                                    <th>TypeHourse</th>
+                                    <th>Beds</th>
+                                    <th>Baths</th>
+                                    <th>Garages</th>
+                                    <th>Content</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var itemHS in Model.HomestayForm)
+                                    {
+                                        var cty = "";
+                                        foreach (var item in Model.AdressForm)
+                                        {
+                                            if (item.IDLocation == itemHS.IDLocation)
+                                            {
+                                                cty = item.City;
+                                                break;
+                                            }
+                                        }
+
+                                        <tr class="gradeX">
+                                            <td>@itemHS.ID_HomeStay</td>
+                                            <td>@itemHS.Name</td>
+                                            <td>@itemHS.Summary</td>
+                                            <td>@itemHS.Adress (@cty)</td>
+                                            <td>@itemHS.Price.Value.ToString("#.##")</td>
+                                            <td>@(itemHS.Sale.Value != 0 ? itemHS.Sale.Value : 0)</td>
+                                            <td>@itemHS.Description</td>
+                                            <td>@itemHS.TypeHourse</td>
+                                            <td>@itemHS.Beds</td>
+                                            <td>@itemHS.Baths</td>
+                                            <td>@itemHS.Garages</td>
+                                            <td>
+                                                <a href=""><span class="glyphicon glyphicon-plus-sign">Edit</span></a>
+                                                <a href=""><span style="color:red" class="glyphicon glyphicon-plus-sign">Remove</span></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="icon-th"></i> </span>
+                        <h5>User &amp; Admin</h5>
+                        <span class="label label-info">Adminstrator</span>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID-User</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Type</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var itemImage in Model.AcountForm)
+                                    {
+                                        <tr>
+                                            <td>@itemImage.ID</td>
+                                            <td>@itemImage.FirstName</td>
+                                            <td>@itemImage.Lastname</td>
+                                            <td>@itemImage.UseName</td>
+                                            <td>@itemImage.TypeUser</td>
+                                            <td>@itemImage.PhoneNumber</td>
+                                            <td>@itemImage.EmailAddress</td>
+                                            <td>
+                                                <a href=""><span class="glyphicon glyphicon-plus-sign">Edit</span></a>
+                                                <a href=""><span style="color:red" class="glyphicon glyphicon-plus-sign">Remove</span></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--end-Footer-part-->
+<script src="~/Areas/AdminControl/js/jquery.min.js"></script>
+<script src="~/Areas/AdminControl/js/jquery.ui.custom.js"></script>
+<script src="~/Areas/AdminControl/js/bootstrap.min.js"></script>
+<script src="~/Areas/AdminControl/js/jquery.uniform.js"></script>
+<script src="~/Areas/AdminControl/js/select2.min.js"></script>
+<script src="~/Areas/AdminControl/js/jquery.dataTables.min.js"></script>
+<script src="~/Areas/AdminControl/js/matrix.js"></script>
+<script src="~/Areas/AdminControl/js/matrix.tables.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.widget-title').click(function () {
+            $($($(this).parent().children())[1]).toggle("slow");
+        });
+    });
+
+</script>

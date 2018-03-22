@@ -27,7 +27,7 @@
                 <br />
                 <input type="password" placeholder="Enter Password" name="PassWord">
                 <br />
-                <button type="submit">Sign In</button>
+                <button type="button" id="loginAdmin">Sign In</button>
                 <br />
                 <a href="#"><p class="small">Forgot your password?</p></a>
             </div>
@@ -38,32 +38,43 @@
 
 <script>
     $(document).ready(function () {
-        $('#logo').addClass('animated fadeInDown');
-        $("input:text:visible:first").focus();
-
-
-        $("#login").on("click", function () {
-            var UseName = $("input[name=UseName]").val();
-            var PassWord = $("input[name=PassWord]").val();
-            $.ajax({
-                url: "@Url.Action("Admin", "LoginAdmin")",
-                type: "POST",
-                data: { PassWord: PassWord, UseName: UseName },
-                success: function (data) {
-                    if (data.success == true)
-                        location.reload();
-                    else {
-                        $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
-                        $("input[name=PassWord]").val('');
-                    }
-                }, error: function (error) {
-                    $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
-                    $("input[name=PassWord]").val('');
-                }
-            });
+        $('input[name=PassWord]').keypress(function (e) {
+            if (e.which == 13) {//Enter key pressed
+                LoginAdmin();
+            }
         });
 
+        $("#loginAdmin").on("click", function () {
+            LoginAdmin();
+        });
+
+        $('#logo').addClass('animated fadeInDown');
+        $("input:text:visible:first").focus();
     });
+
+    function LoginAdmin() {
+        var UseName = $("input[name=UseName]").val();
+        var UrlIndex = '@Url.Action("/Index")';
+        var PassWord = $("input[name=PassWord]").val();
+        $.ajax({
+            url: "@Url.Action("LoginAdmin", "Admin")",
+            type: "POST",
+        data: { PassWord: PassWord, UseName: UseName },
+        success: function (data) {
+            if (data.success == true)
+                location.replace(UrlIndex);
+            else {
+                $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
+                $("input[name=PassWord]").val('');
+            }
+        }, error: function (error) {
+            $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
+            $("input[name=PassWord]").val('');
+        }
+    });
+
+
+    }
 
     $('#username').focus(function () {
         $('label[for="UseName"]').addClass('selected');
