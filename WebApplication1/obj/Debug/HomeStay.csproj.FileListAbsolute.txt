@@ -101,4 +101,3 @@ C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\System.Web.Helpers
 C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\System.Web.Mvc.xml
 C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\obj\Debug\WebApplication1.pdb
-C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\obj\Debug\HomeStay.csprojResolveAssemblyReference.cache

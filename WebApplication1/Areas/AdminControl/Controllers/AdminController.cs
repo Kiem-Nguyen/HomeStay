@@ -5,17 +5,23 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Areas.AdminControl.Fillter;
 using WebApplication1.Areas.AdminControl.Models;
+using WebApplication1.Areas.AdminControl.Services;
 using WebApplication1.Models;
 
 namespace WebApplication1.Areas.AdminControl.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly HomeStayVNEntities dbContext;
+        private readonly IAdminServices _iadminservices;
+        public AdminController(IAdminServices iadminservices)
+        {
+            this._iadminservices = iadminservices;
+        }
+
         public AdminController()
         {
-            dbContext = new HomeStayVNEntities();
         }
+
 
         [Protect]
         public ActionResult Index()
@@ -38,14 +44,7 @@ namespace WebApplication1.Areas.AdminControl.Controllers
         [Protect]
         public ActionResult Tables()
         {
-
-            FormViewModel data = new FormViewModel();
-            data.AboutForm = (dbContext.About_Us_Admins).ToList();
-            data.AcountForm = (dbContext.Accounts).ToList();
-            data.AdressForm = (dbContext.Adresses).ToList();
-            data.EventForm = (dbContext.Events).ToList();
-            data.HomestayForm = (dbContext.HomeStays).ToList();
-            data.ImageForm = (dbContext.ImageHomeStays).ToList();
+            var data = _iadminservices.GetAllTable();
 
             return View(data);
         }

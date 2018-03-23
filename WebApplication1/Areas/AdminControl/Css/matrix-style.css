@@ -520,7 +520,7 @@ hr{ border-top-color:#dadada;}
 	margin-bottom: 16px;
 	position: relative;
 }
-.widget-box .widget-title {
+.widget-box span {
 	cursor:pointer;
 }
 .widget-box.widget-calendar, .widget-box.widget-chat {
