@@ -18,11 +18,6 @@ namespace WebApplication1.Areas.AdminControl.Controllers
             this._iadminservices = iadminservices;
         }
 
-        public AdminController()
-        {
-        }
-
-
         [Protect]
         public ActionResult Index()
         {
@@ -47,6 +42,14 @@ namespace WebApplication1.Areas.AdminControl.Controllers
             var data = _iadminservices.GetAllTable();
 
             return View(data);
+        }
+
+        [HttpPost]
+        public ActionResult GetAllHomeStay()
+        {
+            var data = _iadminservices.GetAllHomeStay();
+
+            return Json(new { data = data, success = true });
         }
 
         [Protect]

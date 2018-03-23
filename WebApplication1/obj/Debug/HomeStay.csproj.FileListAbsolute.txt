@@ -101,3 +101,16 @@ C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\System.Web.Helpers
 C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\System.Web.Mvc.xml
 C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\Microsoft.Practices.ServiceLocation.dll
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\Microsoft.Practices.Unity.dll
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\Microsoft.Practices.ServiceLocation.xml
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\Microsoft.Practices.Unity.xml
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\obj\Debug\HomeStay.csprojResolveAssemblyReference.cache
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\Unity.Abstractions.dll
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\Unity.Container.dll
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\Unity.Mvc.dll
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\WebActivatorEx.dll
+C:\Users\kiem.nguyen\Desktop\new\HomeStay\WebApplication1\bin\Unity.Mvc.xml

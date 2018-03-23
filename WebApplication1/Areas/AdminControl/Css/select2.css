@@ -419,15 +419,15 @@ disabled look for already selected choices in the results dropdown
 }
 
 .select2-search-choice-close {
-  display: block;
-  position: absolute;
-  right: 3px;
-  top: 4px;
-  width: 12px;
-  height: 13px;
-  font-size: 1px;
-  background: url('../Image/select2.png') right top no-repeat;
-  outline: none;
+    display: block;
+    position: absolute;
+    right: 3px;
+    top: 4px;
+    width: 12px;
+    height: 13px;
+    font-size: 1px;
+    background-image: url('../Images/select2.png');
+    outline: none;
 }
 
 .select2-container-multi .select2-search-choice-close {
@@ -480,4 +480,20 @@ disabled look for already selected choices in the results dropdown
 	.select2-search input {
 		background-position: 100% -21px !important;
 	}
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+form {
+    margin: 20px;
 }
