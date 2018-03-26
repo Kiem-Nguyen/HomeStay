@@ -36,7 +36,7 @@ namespace WebApplication1.Areas.AdminControl.Controllers
             return View();
         }
 
-        [Protect]
+        //[Protect]
         public ActionResult Tables()
         {
             var data = _iadminservices.GetAllTable();

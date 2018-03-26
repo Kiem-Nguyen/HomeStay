@@ -13,7 +13,7 @@
         <hr>
         <div class="row-fluid">
             <div class="span12">
-                <div class="widget-box">
+                <div class="widget-box" id="formImage">
                     <div class="widget-title">
                         <div class="widget-title">
                             <span class="icon togge-icon"> <i class="icon-th"></i> </span>
@@ -50,7 +50,7 @@
                                             <td>@itemImage.IDImage</td>
                                             <td>@nameHS (@itemImage.IDHomeStay)</td>
                                             <td>@itemImage.Image </td>
-                                            <td><img src="@itemImage.Image" style="width: 80px; height: auto" /></td>
+                                            <td><img src="~/@itemImage.Image" style="width: 80px; height: auto" /></td>
                                             <td>
                                                 <a href=""><span class="glyphicon glyphicon-plus-sign">Edit</span></a>
                                                 <a href=""><span style="color:red" class="glyphicon glyphicon-plus-sign">Remove</span></a>
@@ -198,6 +198,9 @@
         });
 
         $('#AddImageTable').click(function () {
+            $('.filename').text("No file selected");
+            $("#file").val("");
+            $('.select2-search-choice').remove();
             $('#AddImagePopup').removeClass('hidden');
         });
 
@@ -205,24 +208,66 @@
             $('#AddImagePopup').addClass('hidden');
         });
 
-        @*$('#SubmitAdd').click(function () {
-            $.ajax({
-                url: "@Url.Action("UploadFile", "Upload")",
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data.success) {
-                        alert(data.messeger)
-                    }
-                }, error: function (error) {
-                    alert(data.messeger);
-                }
-            });
-        });*@
+        $('#SubmitAddImage').click(function () {
+            AddImage();
+        });
+
     });
 
-    function LoadOptionHomeStay()
-    {
+    function AddImage() {
+        debugger;
+        var listSelected = $($('.select2-search-choice').find('div'));
+        var listId = "";
+        for (var i = 0; i < listSelected.length - 1; i++) {
+            listId += $(listSelected[i]).text().substring(0, 1) + ',';
+        }
+        listId += $(listSelected[listSelected.length - 1]).text().substring(0, 1);
+
+        console.log(listId);
+        var formData = new FormData();
+        var files = $("#file").get(0).files;
+
+        if (files.length > 0 && listId.length != 0) {
+            formData.append("file", files[0]);
+            //file.append("listId", listId);
+            formData.append("listId", listId);
+        }
+        else {
+            alert('warning !!! Please input to upload');
+            return false;
+        }
+        var extension = $("#file").val().split('.').pop().toUpperCase();
+        if (extension != "PNG" && extension != "JPG" && extension != "GIF" && extension != "JPEG") {
+            common.showNotification('warning', 'Imvalid image file format.', 'top', 'right');
+            return false;
+        }
+        console.log(formData, 'formData');
+
+        $.ajax({
+            url: '@Url.Action("UploadFile", "Upload")',
+            type: "POST",
+            processData: false,
+            data:formData,
+            contentType: false,
+            success: function (response) {
+                if (response != null || response != '')
+                {
+                    $('#AddImagePopup').addClass('hidden');
+                    location.reload();
+                    alert(response.messeger);
+                }
+                else
+                {
+
+                }
+            },
+            error: function (er) { }
+
+        });
+        return false;
+    }
+
+    function LoadOptionHomeStay() {
         $.ajax({
             url: "@Url.Action("GetAllHomeStay", "Admin")",
             data: {},
@@ -230,10 +275,9 @@
             success: function (data) {
                 if (data.success) {
                     var datasuccess = data.data;
-                    for (var i = 0; i < datasuccess.length ; i++)
-                    {
+                    for (var i = 0; i < datasuccess.length ; i++) {
                         var option = '<option>' + datasuccess[i].ID_HomeStay + ' - ' + datasuccess[i].Name + '</option>'
-                        $('.selectpicker').append(option);
+                        $('#multipleHomestay').append(option);
                     }
                 }
             }, error: function (error) {

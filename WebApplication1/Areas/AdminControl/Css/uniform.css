@@ -583,5 +583,5 @@ div.uploader input {
   float: right;
   height: 25px;
   border: none;
-  cursor: default;
+  cursor: pointer;
 }

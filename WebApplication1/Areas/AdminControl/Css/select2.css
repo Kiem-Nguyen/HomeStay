@@ -85,7 +85,7 @@ Version: 3.2 Timestamp: Mon Sep 10 10:38:04 PDT 2012
     color: #000;
     border: 1px solid #aaa;
     border-top: 0;
-    position: absolute;
+    position: fixed;
     top: 100%;
     -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
     -moz-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);

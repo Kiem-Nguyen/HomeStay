@@ -2,26 +2,27 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Areas.AdminControl.Services;
 
 namespace WebApplication1.Areas.AdminControl.Controllers
 {
     public class UploadController : Controller
     {
-        [HttpGet]
-        public ActionResult UploadFile()
+        private readonly IAdminServices _iadminservices;
+        public UploadController(IAdminServices iadminservices)
         {
-            return View();
+            this._iadminservices = iadminservices;
         }
+
         [HttpPost]
-        public ActionResult UploadFile(HttpPostedFileBase file)
+        public JsonResult UploadFile(HttpPostedFileBase file, string listId)
         {
             try
             {
+                var listID = listId.Split(',');
                 if (file.ContentLength > 0)
                 {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
-                    file.SaveAs(_path);
+                    _iadminservices.AddImage(listID, file);
                 }
                 ViewBag.Message = "File Uploaded Successfully!!";
                 return Json(new { success = true , messeger = "File Uploaded Successfully!!" });

@@ -381,7 +381,7 @@ Enjoy!
 
       var divTag = $('<div />'),
           filenameTag = $('<span>'+options.fileDefaultText+'</span>'),
-          btnTag = $('<span>'+options.fileBtnText+'</span>');
+          btnTag = $('<button>'+options.fileBtnText+'</button>');
       
       if(!$el.css("display") == "none" && options.autoHide){
         divTag.hide();

@@ -1,6 +1,6 @@
 ﻿<!-- The Modal Add Image -->
 <div id="AddImagePopup" class="modal hidden">
-    <form class="modal-content animate">
+    <form class="modal-content animate" enctype="multipart/form-data">
         <div class="imgcontainer">
             <span class="close CloseModal" title="Close Modal">&times;</span>
             <h3 style="text-align: center;">Add Image</h3>
@@ -15,10 +15,10 @@
             @Html.TextBox("file", "", new { type = "file" }) <br />
 
             <label for="psw"><b>HomeStay ID - Name</b></label>
-            <select class="selectpicker" multiple>
+            <select class="selectpicker" id="multipleHomestay" multiple>
             </select>
             <br />
-            <button type="button" class="badge button" id="SubmitAdd">Submit</button>
+            <button type="button" class="badge button" id="SubmitAddImage">Submit</button>
         </div>
     </form>
 </div>
