@@ -13,8 +13,12 @@ namespace WebApplication1.Areas.AdminControl.Services
 
         FormViewModel GetAllTable();
 
+        ImageHomeStay getItemImageHomeStay(int id);
+
         bool AddImage(string[] idHomestay, HttpPostedFileBase urlImage);
 
-        bool DeleteImage(int id);
+        bool DeleteImage(int id, string src);
+
+        bool EditImage(HttpPostedFileBase file, string Id, string idHomeStay, string oldImage);
     }
 }

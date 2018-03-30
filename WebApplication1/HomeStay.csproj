@@ -350,6 +350,7 @@
     <Compile Include="Areas\AdminControl\Controllers\AdminController.cs" />
     <Compile Include="Areas\AdminControl\Controllers\ErrorController.cs" />
     <Compile Include="Areas\AdminControl\Controllers\FormsController.cs" />
+    <Compile Include="Areas\AdminControl\Controllers\TablesController.cs" />
     <Compile Include="Areas\AdminControl\Controllers\UploadController.cs" />
     <Compile Include="Areas\AdminControl\Fillter\ProtectAttribute.cs" />
     <Compile Include="Areas\AdminControl\Models\FormViewModel.cs" />
@@ -541,7 +542,11 @@
     <Content Include="Areas\AdminControl\Views\Addons\Chat.cshtml" />
     <Content Include="Areas\AdminControl\Views\Error\PageNotFound.cshtml" />
     <Content Include="Areas\AdminControl\Views\Error\ServerError.cshtml" />
-    <Content Include="Areas\AdminControl\Views\Shared\PopupAddTable.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Shared\Tables\PopupAddImage.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Shared\Tables\PopupEditImage.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Tables\ImageHomestay.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Tables\Homestay.cshtml" />
+    <Content Include="Areas\AdminControl\Views\Tables\Account.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -554,7 +559,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\AdminControl\Views\Upload\" />
+    <Folder Include="Areas\AdminControl\Views\GetItem\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

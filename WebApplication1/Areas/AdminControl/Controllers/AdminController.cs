@@ -36,22 +36,6 @@ namespace WebApplication1.Areas.AdminControl.Controllers
             return View();
         }
 
-        //[Protect]
-        public ActionResult Tables()
-        {
-            var data = _iadminservices.GetAllTable();
-
-            return View(data);
-        }
-
-        [HttpPost]
-        public ActionResult GetAllHomeStay()
-        {
-            var data = _iadminservices.GetAllHomeStay();
-
-            return Json(new { data = data, success = true });
-        }
-
         [Protect]
         public ActionResult ButtonsIcons()
         {

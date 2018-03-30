@@ -33,5 +33,22 @@ namespace WebApplication1.Areas.AdminControl.Controllers
                 return Json(new { success = false, messeger = "File upload failed!!" });
             }
         }
+
+        [HttpPost]
+        public JsonResult EditFile(HttpPostedFileBase file, string Id, string idHomeStay, string oldFiles)
+        {
+            try
+            {
+                _iadminservices.EditImage(file, Id, idHomeStay, oldFiles);
+
+                ViewBag.Message = "File Uploaded Successfully!!";
+                return Json(new { success = true, messeger = "File Uploaded Successfully!!" });
+            }
+            catch
+            {
+                ViewBag.Message = "File upload failed!!";
+                return Json(new { success = false, messeger = "File upload failed!!" });
+            }
+        }
     }
 }

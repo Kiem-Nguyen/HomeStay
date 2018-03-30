@@ -1,8 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Tables";
+    ViewBag.Title = "Tables - ImageHomestay";
     Layout = "~/Areas/AdminControl/Views/Shared/_LayoutAdmin.cshtml";
 }
 @model WebApplication1.Areas.AdminControl.Models.FormViewModel
+
+@{ 
+    var count = 1;
+}
 
 <div id="content">
     <div id="content-header">
@@ -37,6 +41,7 @@
                                     foreach (var itemImage in Model.ImageForm)
                                     {
                                         var nameHS = "";
+                                        count = count + 1;
                                         foreach (var item in Model.HomestayForm)
                                         {
                                             if (item.ID_HomeStay == itemImage.IDHomeStay)
@@ -47,121 +52,13 @@
                                         }
                                         string idImage = "image" + @itemImage.IDImage.ToString();
                                         <tr class="odd Image" id="@idImage">
-                                            <td>@itemImage.IDImage</td>
+                                            <td>@(count-1)</td>
                                             <td>@itemImage.IDHomeStay - @nameHS</td>
                                             <td>@itemImage.Image </td>
                                             <td><img src="~/@itemImage.Image" style="width: 80px; height: auto" /></td>
                                             <td>
                                                 <span data-id-edit="@itemImage.IDImage" class="glyphicon glyphicon-plus-sign EditImage">Edit</span>
                                                 <span style="color:red" data-src-image="@itemImage.Image" data-id-remove="@itemImage.IDImage" class="glyphicon glyphicon-plus-sign RemoveImage">Remove</span>
-                                            </td>
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="widget-box">
-                    <div class="widget-title">
-                        <div class="widget-title">
-                            <span class="icon togge-icon"> <i class="icon-th"></i> </span>
-                            <h5>HomeStay Table</h5>
-                            <span class="label label-info" id="AddHomeStayTable"> ADD++ </span>
-                        </div>
-                    </div>
-                    <div class="widget-content nopadding">
-                        <table class="table table-bordered data-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Summary</th>
-                                    <th>Adress</th>
-                                    <th>Price($)</th>
-                                    <th>Sale(%)</th>
-                                    <th>Description</th>
-                                    <th>TypeHourse</th>
-                                    <th>Beds</th>
-                                    <th>Baths</th>
-                                    <th>Garages</th>
-                                    <th>Content</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{
-                                    foreach (var itemHS in Model.HomestayForm)
-                                    {
-                                        var cty = "";
-                                        foreach (var item in Model.AdressForm)
-                                        {
-                                            if (item.IDLocation == itemHS.IDLocation)
-                                            {
-                                                cty = item.City;
-                                                break;
-                                            }
-                                        }
-
-                                        <tr class="gradeX">
-                                            <td>@itemHS.ID_HomeStay</td>
-                                            <td>@itemHS.Name</td>
-                                            <td>@itemHS.Summary</td>
-                                            <td>@itemHS.Adress (@cty)</td>
-                                            <td>@itemHS.Price.Value.ToString("#.##")</td>
-                                            <td>@(itemHS.Sale.Value != 0 ? itemHS.Sale.Value : 0)</td>
-                                            <td>@itemHS.Description</td>
-                                            <td>@itemHS.TypeHourse</td>
-                                            <td>@itemHS.Beds</td>
-                                            <td>@itemHS.Baths</td>
-                                            <td>@itemHS.Garages</td>
-                                            <td>
-                                                <a href=""><span class="glyphicon glyphicon-plus-sign">Edit</span></a>
-                                                <a href=""><span style="color:red" class="glyphicon glyphicon-plus-sign">Remove</span></a>
-                                            </td>
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="widget-box">
-                    <div class="widget-title">
-                        <div class="widget-title">
-                            <span class="icon togge-icon"> <i class="icon-th"></i> </span>
-                            <h5>User &amp; Account Table</h5>
-                            <span class="label label-info" id="AddUserTable"> ADD++ </span>
-                        </div>
-                    </div>
-                    <div class="widget-content nopadding">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID-User</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                    <th>Type</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{
-                                    foreach (var itemImage in Model.AcountForm)
-                                    {
-                                        <tr>
-                                            <td>@itemImage.ID</td>
-                                            <td>@itemImage.FirstName</td>
-                                            <td>@itemImage.Lastname</td>
-                                            <td>@itemImage.UseName</td>
-                                            <td>@(itemImage.TypeUser == 0 ? "Admintrator" : "User" )</td>
-                                            <td>@itemImage.PhoneNumber</td>
-                                            <td>@itemImage.EmailAddress</td>
-                                            <td>
-                                                <a href=""><span class="glyphicon glyphicon-plus-sign">Edit</span></a>
-                                                <a href=""><span style="color:red" class="glyphicon glyphicon-plus-sign">Remove</span></a>
                                             </td>
                                         </tr>
                                     }
@@ -186,7 +83,6 @@
 <script src="~/Areas/AdminControl/js/jquery.dataTables.min.js"></script>
 <script src="~/Areas/AdminControl/js/matrix.js"></script>
 <script src="~/Areas/AdminControl/js/matrix.tables.js"></script>
-
 
 <script>
     $(document).ready(function () {
@@ -230,7 +126,7 @@
             $('#EditImagePopup').removeClass('hidden');
             var id = $(this).attr('data-id-edit');
             var id_name = $($(this).parent().parent().find("td"))[1];
-            $('#hiddenID').val(id);
+            $('#hiddenIDEdit').val(id);
             $('#nameAndIdImage').html("Edit ID Image : " + id);
 
             LoadPopupEdit(id, $(id_name).text());
@@ -245,7 +141,9 @@
 
             if(fileHidden != file || idhomestayHidden != idhomestay)
             {
-                alert("Change !!!");
+                var idHomeStay = idhomestay.split(' ')[0];
+
+                SaveImage(idHomeStay);
             }
             else
             {
@@ -274,7 +172,49 @@
                 alert("Error");
             }
         });
-    }
+    };
+
+    function SaveImage(idHomeStay) {
+        var formData = new FormData();
+        var files = $('#EditImagePopup').find("#file").get(0).files;
+        var oldfiles = $('#EditImagePopup').find('#hiddenFileEdit').val();
+
+        if (files.length > 0) {
+            formData.append("file", files[0]);
+            formData.append("Id", $('#EditImagePopup').find('#hiddenIDEdit').val());
+            formData.append("idHomeStay", idHomeStay);
+            formData.append("oldFiles", oldfiles);
+        }
+        else
+        {
+            formData.append("file", null);
+            formData.append("Id", $('#EditImagePopup').find('#hiddenIDEdit').val());
+            formData.append("idHomeStay", idHomeStay);
+            formData.append("oldFiles", "");
+        }
+
+        $.ajax({
+            url: '@Url.Action("EditFile", "Upload")',
+            type: "POST",
+            processData: false,
+            data: formData,
+            contentType: false,
+            success: function (response) {
+                if (response != null || response != '') {
+                    $('#AddImagePopup').addClass('hidden');
+                    location.reload();
+                    alert(response.messeger);
+                }
+                else {
+                    alert(response.messeger);
+                }
+            },
+            error: function (er) {
+                alert(response.messeger);
+            }
+
+        });
+    };
 
     function LoadOptionHomeStay() {
         $.ajax({
@@ -294,7 +234,7 @@
                 alert(data.messeger);
             }
         });
-    }
+    };
 
     function AddImage() {
         var listSelected = $($('.select2-search-choice').find('div'));
@@ -311,7 +251,6 @@
 
         if (files.length > 0 && listId.length != 0) {
             formData.append("file", files[0]);
-            //file.append("listId", listId);
             formData.append("listId", listId);
         }
         else {
@@ -334,8 +273,8 @@
             success: function (response) {
                 if (response != null || response != '') {
                     $('#AddImagePopup').addClass('hidden');
-                    location.reload();
                     alert(response.messeger);
+                    location.reload();
                 }
                 else {
                     alert(response.messeger);
@@ -347,7 +286,7 @@
 
         });
         return false;
-    }
+    };
 
     function RemoveImage(id, src) {
         $.ajax({
@@ -357,26 +296,12 @@
             success: function (data) {
                 if (data) {
                     alert("Comple !!!");
+                    location.reload();
                 }
             }, error: function (error) {
                 alert("Error !");
             }
         });
-    }
-
-    function EditImage(id) {
-        $.ajax({
-            url: "@Url.Action("EditImage", "Tables")",
-            data: { id: id },
-            type: "POST",
-            success: function (data) {
-                if (data.success) {
-                    alert("Comple !!!");
-                }
-            }, error: function (error) {
-                alert("Error !");
-            }
-        });
-    }
+    };
 
 </script>

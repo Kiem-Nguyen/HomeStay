@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Table - Homestay";
+    Layout = "~/Areas/AdminControl/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model WebApplication1.Areas.AdminControl.Models.FormViewModel
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="@Url.Action("Index","Admin")" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
+        <h1>Tables</h1>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <div class="widget-title">
+                            <span class="icon togge-icon"> <i class="icon-th"></i> </span>
+                            <h5>HomeStay Table</h5>
+                            <span class="label label-info" id="AddHomeStayTable"> ADD++ </span>
+                        </div>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Summary</th>
+                                    <th>Adress</th>
+                                    <th>Price($)</th>
+                                    <th>Sale(%)</th>
+                                    <th>Description</th>
+                                    <th>TypeHourse</th>
+                                    <th>Beds</th>
+                                    <th>Baths</th>
+                                    <th>Garages</th>
+                                    <th>Content</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var itemHS in Model.HomestayForm)
+                                    {
+                                        var cty = "";
+                                        foreach (var item in Model.AdressForm)
+                                        {
+                                            if (item.IDLocation == itemHS.IDLocation)
+                                            {
+                                                cty = item.City;
+                                                break;
+                                            }
+                                        }
+
+                                        <tr class="gradeX">
+                                            <td>@itemHS.ID_HomeStay</td>
+                                            <td>@itemHS.Name</td>
+                                            <td>@itemHS.Summary</td>
+                                            <td>@itemHS.Adress (@cty)</td>
+                                            <td>@itemHS.Price.Value.ToString("#.##")</td>
+                                            <td>@(itemHS.Sale.Value != 0 ? itemHS.Sale.Value : 0)</td>
+                                            <td>@itemHS.Description</td>
+                                            <td>@itemHS.TypeHourse</td>
+                                            <td>@itemHS.Beds</td>
+                                            <td>@itemHS.Baths</td>
+                                            <td>@itemHS.Garages</td>
+                                            <td>
+                                                <a href=""><span class="glyphicon glyphicon-plus-sign">Edit</span></a>
+                                                <a href=""><span style="color:red" class="glyphicon glyphicon-plus-sign">Remove</span></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--end-Footer-part-->
+<script src="~/Areas/AdminControl/js/jquery.min.js"></script>
+<script src="~/Areas/AdminControl/js/jquery.ui.custom.js"></script>
+<script src="~/Areas/AdminControl/js/bootstrap.min.js"></script>
+<script src="~/Areas/AdminControl/js/jquery.uniform.js"></script>
+<script src="~/Areas/AdminControl/js/select2.min.js"></script>
+<script src="~/Areas/AdminControl/js/jquery.dataTables.min.js"></script>
+<script src="~/Areas/AdminControl/js/matrix.js"></script>
+<script src="~/Areas/AdminControl/js/matrix.tables.js"></script>
+
+<script>
+    $(document).ready(function () {
+        EventHomeStay();
+
+
+    });
+
+    function EventHomeStay() {
+        $('.togge-icon').click(function () {
+            $($($(this).parent().parent().parent().children())[1]).toggle("slow");
+        });
+    }
+
+</script>

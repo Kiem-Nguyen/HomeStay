@@ -5,6 +5,8 @@ using System.Web.Mvc;
 using System.Web;
 using System.IO;
 using System.Linq;
+using System.Data.Entity.Migrations;
+using System.Web.Hosting;
 
 namespace WebApplication1.Areas.AdminControl.Services
 {
@@ -49,8 +51,14 @@ namespace WebApplication1.Areas.AdminControl.Services
             data.AdressForm = (dbContext.Adresses).ToList();
             data.EventForm = (dbContext.Events).ToList();
             data.HomestayForm = (dbContext.HomeStays).ToList();
-            data.ImageForm = (dbContext.ImageHomeStays).ToList();
+            data.ImageForm = (dbContext.ImageHomeStays).OrderBy(x => x.IDHomeStay).ToList();
             return data;
+        }
+
+        public ImageHomeStay getItemImageHomeStay(int id)
+        {
+            var data = dbContext.ImageHomeStays.FirstOrDefault(x => x.IDImage == id);
+            return data != null ? data : null;
         }
 
         public bool AddImage(string[] idHomestay, HttpPostedFileBase file)
@@ -63,19 +71,18 @@ namespace WebApplication1.Areas.AdminControl.Services
                     {
                         ImageHomeStay image = new ImageHomeStay();
                         image.IDHomeStay = int.Parse(id);
-                        db.ImageHomeStays.Add(image);
-                        db.SaveChanges();
 
                         string _FileName = Path.GetFileName(file.FileName);
 
-                        if (!Directory.Exists(System.Web.HttpContext.Current.Server.MapPath("~/UploadedFiles/" + image.IDImage)))
-                            Directory.CreateDirectory(System.Web.HttpContext.Current.Server.MapPath("~/UploadedFiles/" + image.IDImage));
+                        if (!Directory.Exists(System.Web.HttpContext.Current.Server.MapPath("~/UploadedFiles/" + image.IDHomeStay)))
+                            Directory.CreateDirectory(System.Web.HttpContext.Current.Server.MapPath("~/UploadedFiles/" + image.IDHomeStay));
 
-                        string path1 = System.Web.HttpContext.Current.Server.MapPath("~/UploadedFiles/" + image.IDImage);
+                        string path1 = System.Web.HttpContext.Current.Server.MapPath("~/UploadedFiles/" + image.IDHomeStay);
                         string _path = Path.Combine(path1, _FileName);
                         file.SaveAs(_path);
 
-                        image.Image = "UploadedFiles/" + image.IDImage + "/" + _FileName;
+                        image.Image = "UploadedFiles/" + image.IDHomeStay + "/" + _FileName;
+                        db.ImageHomeStays.Add(image);
                     }
                     db.SaveChanges();
                     return true;
@@ -87,16 +94,66 @@ namespace WebApplication1.Areas.AdminControl.Services
             }
         }
 
-        public bool DeleteImage(int id)
+        public bool DeleteImage(int id, string path)
+        {
+            try
+            {
+                if (path == null || path.Length <= 0)
+                    return false;
+                path = "~/" + path;
+                if (File.Exists(HostingEnvironment.MapPath(path)))
+                    File.Delete(HostingEnvironment.MapPath(path));
+                
+                using (HomeStayVNEntities db = new HomeStayVNEntities())
+                {
+                    var obj = db.ImageHomeStays.FirstOrDefault(x => x.IDImage.Equals(id));
+                    if (obj != null)
+                    {
+                        db.ImageHomeStays.Remove(obj);
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool EditImage(HttpPostedFileBase file, string idImage, string idHomeStay, string oldImage)
         {
             try
             {
                 using (HomeStayVNEntities db = new HomeStayVNEntities())
                 {
-                    var obj = db.ImageHomeStays.FirstOrDefault(a => a.IDHomeStay.Equals(id));
+                    int id = int.Parse(idImage);
+                    var obj = db.ImageHomeStays.FirstOrDefault(x => x.IDImage.Equals(id));
                     if (obj != null)
                     {
-                        db.ImageHomeStays.Remove(obj);
+                        ImageHomeStay image = obj;
+
+                        if(!string.IsNullOrWhiteSpace(oldImage))
+                        {
+                            string _FileName = Path.GetFileName(file.FileName);
+
+                            if (!Directory.Exists(System.Web.HttpContext.Current.Server.MapPath("~/UploadedFiles/" + idImage)))
+                                Directory.CreateDirectory(System.Web.HttpContext.Current.Server.MapPath("~/UploadedFiles/" + idImage));
+
+                            string path1 = System.Web.HttpContext.Current.Server.MapPath("~/UploadedFiles/" + idImage);
+                            string _path = Path.Combine(path1, _FileName);
+                            file.SaveAs(_path);
+
+                            string path = "~/UploadedFiles/" + idImage + "/" + oldImage;
+                            if (File.Exists(HostingEnvironment.MapPath(path)))
+                                File.Delete(HostingEnvironment.MapPath(path));
+
+                            image.Image = "UploadedFiles/" + idImage + "/" + _FileName;
+                        }
+
+                        image.IDHomeStay = int.Parse(idHomeStay);
+                        db.ImageHomeStays.AddOrUpdate<ImageHomeStay>(obj);
                         db.SaveChanges();
                         return true;
                     }
