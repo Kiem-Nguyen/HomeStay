@@ -20,5 +20,6 @@ namespace WebApplication1.Areas.AdminControl.Services
         bool DeleteImage(int id, string src);
 
         bool EditImage(HttpPostedFileBase file, string Id, string idHomeStay, string oldImage);
+        List<Chat> getChats();
     }
 }

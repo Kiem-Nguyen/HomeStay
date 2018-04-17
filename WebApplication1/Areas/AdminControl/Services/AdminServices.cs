@@ -55,6 +55,12 @@ namespace WebApplication1.Areas.AdminControl.Services
             return data;
         }
 
+        public List<Chat> getChats()
+        {
+            var data = dbContext.Chats.Where(x => x.Seen == 0).ToList();
+            return data;
+        }
+
         public ImageHomeStay getItemImageHomeStay(int id)
         {
             var data = dbContext.ImageHomeStays.FirstOrDefault(x => x.IDImage == id);

@@ -7,7 +7,7 @@
                 foreach (var item in Model)
                 {
                     var pricesale = item.HomeStayModel.Price - item.HomeStayModel.Price * item.HomeStayModel.Sale / 100;
-                    <li style="background-image: url(@item.ImageList[0].Image)">
+                    <li style="background-image: url(/@item.ImageList[0].Image)">
                         <div class="container">
                             <div class="col-md-12 text-center js-fullheight fh5co-property-brief slider-text">
                                 <div class="fh5co-property-brief-inner">

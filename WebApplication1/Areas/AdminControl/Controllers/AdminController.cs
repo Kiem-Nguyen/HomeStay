@@ -48,14 +48,22 @@ namespace WebApplication1.Areas.AdminControl.Controllers
         }
 
         [HttpPost]
+        public JsonResult Messagers()
+        {
+            var data = _iadminservices.getChats();
+            return Json(new { data = data, count = data.Count() });
+        }
+
+        [HttpPost]
         public ActionResult LoginAdmin(Account objUser)
         {
+            Session.Remove("UserAdmin");
             if (ModelState.IsValid)
             {
                 using (HomeStayVNEntities db = new HomeStayVNEntities())
                 {
-                    var obj = db.Accounts.FirstOrDefault(a => a.UseName.Equals(objUser.UseName) && a.PassWord.Equals(objUser.PassWord) && a.TypeUser == 0);
-                    if (obj != null)
+                    var obj = db.Accounts.FirstOrDefault(a => a.UseName== objUser.UseName && a.PassWord == objUser.PassWord);
+                    if (obj != null && (obj.TypeUser == 0 || obj.TypeUser == 2))
                     {
                         Session["UserAdmin"] = obj as Account;
                         return Json(new { success = true });

@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="HomeStayVNModelStoreContainer" CdmEntityContainer="HomeStayVNEntities">
-    <EntitySetMapping Name="C__MigrationHistory">
-      <EntityTypeMapping TypeName="HomeStayVNModel.C__MigrationHistory">
-        <MappingFragment StoreEntitySet="__MigrationHistory">
-          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-          <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="About_Us_Admins">
       <EntityTypeMapping TypeName="HomeStayVNModel.About_Us_Admin">
         <MappingFragment StoreEntitySet="About Us Admin">
@@ -27,14 +17,14 @@
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="HomeStayVNModel.Account">
         <MappingFragment StoreEntitySet="Account">
-          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UseName" ColumnName="UseName" />
           <ScalarProperty Name="PassWord" ColumnName="PassWord" />
           <ScalarProperty Name="TypeUser" ColumnName="TypeUser" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -44,6 +34,19 @@
           <ScalarProperty Name="IDLocation" ColumnName="IDLocation" />
           <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="IDEvent" ColumnName="IDEvent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chats">
+      <EntityTypeMapping TypeName="HomeStayVNModel.Chat">
+        <MappingFragment StoreEntitySet="Chats">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Seen" ColumnName="Seen" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

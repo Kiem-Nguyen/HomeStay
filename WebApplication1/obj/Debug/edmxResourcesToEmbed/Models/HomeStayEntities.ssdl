@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="HomeStayVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-  </EntityType>
   <EntityType Name="About Us Admin">
     <Key>
       <PropertyRef Name="ID User" />
@@ -42,6 +32,18 @@
     <Property Name="IDLocation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="City" Type="nvarchar" MaxLength="50" />
     <Property Name="IDEvent" Type="int" />
+  </EntityType>
+  <EntityType Name="Chats">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+    <Property Name="Description" Type="text" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNum" Type="nchar" MaxLength="11" />
+    <Property Name="Seen" Type="int" />
+    <Property Name="Date" Type="datetime" />
   </EntityType>
   <EntityType Name="Event">
     <Key>
@@ -88,10 +90,10 @@
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityContainer Name="HomeStayVNModelStoreContainer">
-    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="About Us Admin" EntityType="Self.About Us Admin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Adress" EntityType="Self.Adress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Chats" EntityType="Self.Chats" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HomeStay" EntityType="Self.HomeStay" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ImageHomeStay" EntityType="Self.ImageHomeStay" Schema="dbo" store:Type="Tables" />

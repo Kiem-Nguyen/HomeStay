@@ -2,11 +2,17 @@
     ViewBag.Title = "Chat Option";
     Layout = "~/Areas/AdminControl/Views/Shared/_LayoutAdmin.cshtml";
 }
+@using WebApplication1.Areas.AdminControl.Models
+@model List<ChatsViewModel>
+
+@{
+    var unread = ViewBag.Unread;
+}
 
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Sample pages</a> <a href="#" class="current">Chat option</a> </div>
-        <h1>Chat option</h1>
+        <h1>Chat option (@unread)</h1>
     </div>
     <div class="container-fluid">
         <hr>
@@ -24,11 +30,35 @@
                             </div>
                             <div class="panel-content nopadding">
                                 <ul class="contact-list">
-                                    <li id="user-Alex" class="online"><a href=""><img src="~/Areas/AdminControl/Images/demo/av1.jpg" /><span>Alex</span></a></li>
-                                    <li id="user-Linda"><a href=""><img alt="" src="~/Areas/AdminControl/Images/demo/av2.jpg" /> <span>Linda</span></a></li>
-                                    <li id="user-John" class="online new"><a href=""><img src="~/Areas/AdminControl/Images/demo/av3.jpg" /><span>John</span></a><span class="msg-count badge badge-info">3</span></li>
-                                    <li id="user-Mark" class="online"><a href=""><img alt="" src="~/Areas/AdminControl/Images/demo/av4.jpg" /> <span>Mark</span></a></li>
-                                    <li id="user-Maxi" class="online"><a href=""><img alt="" src="~/Areas/AdminControl/Images/demo/av5.jpg" /> <span>Maxi</span></a></li>
+                                    @{
+                                        foreach (var listItem in Model)
+                                        {
+                                            var flag = false;
+                                            var list = listItem.item.OrderBy(x => x.Date).ToList();
+                                            <li id="user-@listItem.Email.Split('@')[0]" style="cursor: pointer" data-email-chat="@listItem.Email" class="online">
+                                                <a class="MessagerAccount">
+                                                    <img src="~/Areas/AdminControl/Images/demo/av1.jpg" />
+                                                    <span>@listItem.Email</span>
+                                                    @foreach (var item in list)
+                                                    {
+                                                        if (item.Seen == 0)
+                                                        {
+                                                            flag = true;
+                                                        }
+                                                        <div id="item-@item.ID" data-id="@item.ID" class="hidden-data" style="display: none;">
+                                                            <input type="hidden" name="FullName" value="@item.FullName" />
+                                                            <input type="hidden" name="Description" value="@item.Description" />
+                                                            <input type="hidden" name="DateTime" value="@item.Date" />
+                                                        </div>
+                                                    }
+                                                    @if (flag)
+                                                    {
+                                                        <span style="float: right;font-size: 40px;margin-top: -8px;">.</span>
+                                                    }
+                                                </a>
+                                            </li>
+                                        }
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -56,3 +86,42 @@
 <script src="~/Areas/AdminControl/js/bootstrap.min.js"></script>
 <script src="~/Areas/AdminControl/js/matrix.js"></script>
 <script src="~/Areas/AdminControl/js/matrix.chat.js"></script>
+
+<script>
+    $(document).ready(function () {
+        EventChats();
+    });
+
+    function EventChats() {
+        $('.MessagerAccount').click(function () {
+            $('#chat-messages-inner').html('');
+            var listItem = $(this).find('.hidden-data');
+            for (var i = 0; i < listItem.length; i++)
+            {
+                var getid = $($(this).children()[2]).attr("data-id");
+                var fullName = $(listItem[i]).find('input[name=FullName]').val();
+                var desc = $(listItem[i]).find('input[name=Description]').val();
+                var dateTime = $(listItem[i]).find('input[name=DateTime]').val();
+
+                add_message(getid, fullName, '/Areas/AdminControl/Images/demo/av2.jpg', desc, false, dateTime);
+            }
+        })
+    }
+
+    function add_message(idmess, name, img, msg, clear, date) {
+        var inner = $('#chat-messages-inner');
+        var time = new Date(date);
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        if (hours < 10) hours = '0' + hours;
+        if (minutes < 10) minutes = '0' + minutes;
+        var id = 'msg-' + idmess;
+        inner.append('<p id="' + id + '" class="user-' + id + '">'
+										+ '<span class="msg-block"><img src="' + img + '" alt="" /><strong>' + name + '</strong> <span class="time"> ' + date + '</span>'
+										+ '<span class="msg">' + msg + '</span></span></p>');
+        if (clear) {
+            $('.chat-message input').val('').focus();
+        }
+        $('#chat-messages').animate({ scrollTop: inner.height() }, 1000);
+    }
+</script>

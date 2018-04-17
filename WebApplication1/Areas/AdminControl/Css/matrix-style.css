@@ -53,7 +53,7 @@ hr{ border-top-color:#dadada;}
 	z-index: -9;
 }
 #header h1 {
-	background: url("../Images/logo.png") no-repeat scroll 0 0 transparent;
+	background: url("../Images/logoHomeStay.png") no-repeat scroll 0 0 transparent;
 	height: 31px;
 	left: 20px;
 	line-height: 600px;
@@ -731,12 +731,11 @@ hr{ border-top-color:#dadada;}
 	overflow:auto;
 	top:0px;
 	height:94%;
-	width:175px;
+	width:300px;
 }
 .panel-right .panel-title, .panel-right2 .panel-title {
 	width: 100%;
 	background-color: #ececec;
-	border-bottom: 1px solid #dddddd;
 }
 .panel-right .panel-title h5, .panel-right2 .panel-title h5 {
 	font-size: 12px;
@@ -750,6 +749,8 @@ hr{ border-top-color:#dadada;}
 }
 .chat-content {
 	height: 470px;
+    float: right;
+    width: 666px;
 	padding: 15px;
 }
 .chat-messages {
@@ -964,6 +965,15 @@ span.icon .checker {
 }
 .dataTables_length div {
 	vertical-align: middle;
+}
+#DataTables_Table_0_length select[size] {
+    margin-top: 7px;
+	height: 28px;
+    line-height: 30px;
+	width: 60px;
+    background-color: #efe8e8;
+    border: 1px solid #fff;
+	display: initial !important;
 }
 .dataTables_paginate {
 	line-height: 16px;
@@ -1589,4 +1599,21 @@ div.dataTables_wrapper .ui-widget-header {
 	text-align: center;
 }
 #sidebar .content{ display:none;}
+}
+.maxwidth{
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-bottom: 10px;
+}
+.maxheight{
+    height: 100%;
+    float: left;
+    margin-bottom: 10px;
+}
+.width50{
+    width: 50%;
+    height: auto;
+    float: left;
+    margin-bottom: 10px;
 }

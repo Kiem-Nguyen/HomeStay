@@ -3,6 +3,10 @@
     Layout = "~/Views/Share/_Layout.cshtml";
 }
 
+
+<div class="col-md-12" id="loaddingPage">
+</div>
+
 <div class="fh5co-page-title" style="background-image: url(images/slide_6.jpg);">
     <div class="overlay"></div>
     <div class="container">
@@ -15,7 +19,7 @@
 </div>
 
 <div class="fh5co-contact animate-box">
-    <div class="container">
+    <div class="container" id="SendAMessForm">
         <div class="row">
             <div class="col-md-3">
                 <h3>Contact Info.</h3>
@@ -28,29 +32,102 @@
             </div>
             <div class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Name" type="text">
+                    @{
+                        var User = Session["User"] as WebApplication1.Models.Account;
+                        var name = User?.FirstName.Split(' ')[0];
+                        var email = User?.EmailAddress.Split(' ')[0];
+                        var phone = User?.PhoneNumber.Split(' ')[0];
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @if (Session["User"] != null)
+                                {
+                                    <input class="form-control" value="@name" name="FullName" placeholder="FullName *" type="text">
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="FullName" placeholder="FullName *" type="text">
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Email" type="text">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @if (Session["User"] != null)
+                                {
+                                    <input class="form-control" value="@email" name="Email" placeholder="Email *" type="text" required>
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="Email" placeholder="Email *" type="text" required>
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @if (Session["User"] != null)
+                                {
+                                    <input class="form-control" value="@phone" name="Phonenum" placeholder="PhoneNum" type="text">
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="Phonenum" placeholder="PhoneNum" type="text">
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <input value="Send Message" class="btn btn-primary" type="submit">
-                        </div>
-                    </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea name="Description" class="form-control" id="" cols="30" rows="7" placeholder="Message *" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input value="Send Message" id="SubmitSendAMess" class="btn btn-primary" type="submit">
+                                </div>
+                            </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div id="map" class="animate-box" data-animate-effect="fadeIn"></div>
+
+<script>
+    $(document).ready(function () {
+        EventSend();
+    });
+
+    function EventSend() {
+        $('#SubmitSendAMess').click(function () {
+            var fullName = $('#SendAMessForm').find('input[name=FullName]').val();
+            var email = $('#SendAMessForm').find('input[name=Email]').val();
+            var phoneNum = $('#SendAMessForm').find('input[name=Phonenum]').val();
+            var description = $('#SendAMessForm').find('textarea[name=Description]').val();
+
+            if (fullName != '' && email != '' && description != '') {
+
+                $('#loaddingPage').addClass('loadingpage');
+                setTimeout(function () {
+                    $.ajax({
+                        url: "@Url.Action("Contact", "Home")",
+                        type: "POST",
+                        data: { fullName: fullName, email: email, phoneNum: phoneNum, description: description },
+                        success: function (data) {
+                            if (data.success == true) {
+                                $('#loaddingPage').removeClass('loadingpage');
+                                alert(data.message)
+                            }
+                            else {
+                                $('#loaddingPage').removeClass('loadingpage');
+                                alert(data.message)
+                            }
+                        }, error: function (error) {
+                            $('#loaddingPage').removeClass('loadingpage');
+                            alert(data.message)
+                        }
+                    });
+                }, 1000);
+            }
+        })
+    }
+</script>

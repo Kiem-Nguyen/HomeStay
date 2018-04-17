@@ -25,10 +25,10 @@ namespace WebApplication1.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<About_Us_Admin> About_Us_Admins { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Adress> Adresses { get; set; }
+        public virtual DbSet<Chat> Chats { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<HomeStay> HomeStays { get; set; }
         public virtual DbSet<ImageHomeStay> ImageHomeStays { get; set; }

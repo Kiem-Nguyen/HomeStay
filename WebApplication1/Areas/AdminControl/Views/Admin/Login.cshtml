@@ -10,6 +10,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
+    <div id="loadingpage">
+
+    </div>
     <div class="container">
         <div class="top">
             <h1 id="title" class="hidden"><span id="logo"><span>Hello Adminstrator</span></span></h1>
@@ -18,6 +21,8 @@
             <div class="login-box animated fadeInUp">
                 <div class="box-header">
                     <h2>Log In</h2>
+                </div>
+                <div class="error-login-text">
                 </div>
                 <label for="UseName">Username</label>
                 <br />
@@ -56,22 +61,36 @@
         var UseName = $("input[name=UseName]").val();
         var UrlIndex = '@Url.Action("/Index")';
         var PassWord = $("input[name=PassWord]").val();
-        $.ajax({
-            url: "@Url.Action("LoginAdmin", "Admin")",
-            type: "POST",
-        data: { PassWord: PassWord, UseName: UseName },
-        success: function (data) {
-            if (data.success == true)
-                location.replace(UrlIndex);
-            else {
-                $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
-                $("input[name=PassWord]").val('');
-            }
-        }, error: function (error) {
-            $('.error-login-text').html('<label style="color:red; text-align:center; margin-left: 35%;"><b>Username or password is not exit</b></label><br />');
-            $("input[name=PassWord]").val('');
+        if (UseName != "" && PassWord != "") {
+            $('#loadingpage').addClass('loadingpage');
+
+            setTimeout(function () {
+                $.ajax({
+                    url: "@Url.Action("LoginAdmin", "Admin")",
+                    type: "POST",
+                    data: { PassWord: PassWord, UseName: UseName },
+                    success: function (data) {
+                        if (data.success == true) {
+                            $('#loadingpage').removeClass('loadingpage');
+                            location.replace(UrlIndex);
+                        }
+                        else {
+                            $('#loadingpage').removeClass('loadingpage');
+                            $('.error-login-text').html('<label style="color:red; text-align:center;"><b>Username or password is not exit</b></label><br />');
+                            $("input[name=PassWord]").val('');
+                        }
+                    }, error: function (error) {
+                        $('#loadingpage').removeClass('loadingpage');
+                        $('.error-login-text').html('<label style="color:red; text-align:center;"><b>Username or password is not exit</b></label><br />');
+                        $("input[name=PassWord]").val('');
+                    }
+                });
+            }, 1000);
+
         }
-    });
+        else {
+            $('.error-login-text').html('<label style="color:red; text-align:center;"><b>Please input value</b></label><br />');
+        }
 
 
     }

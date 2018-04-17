@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Areas.AdminControl.Fillter;
 using WebApplication1.Areas.AdminControl.Services;
 using WebApplication1.Models;
 
@@ -32,13 +33,15 @@ namespace WebApplication1.Areas.AdminControl.Controllers
             return View(table);
         }
 
-        //[Protect]
+        [Protect]
         public ActionResult Account()
         {
             var table = _iadminservices.GetAllTable();
 
             return View(table);
         }
+
+        #region Image Homestay
 
         [HttpPost]
         public ActionResult GetAllHomeStay()
@@ -55,13 +58,6 @@ namespace WebApplication1.Areas.AdminControl.Controllers
             return Json(new { data = data });
         }
 
-        //[HttpPost]
-        //public ActionResult EditImage(ImageHomeStay id)
-        //{
-        //    var data = _iadminservices.EditImage(id);
-        //    return Json(new { data = data });
-        //}
-
         [HttpPost]
         public ActionResult getImageByID(int id)
         {
@@ -70,5 +66,13 @@ namespace WebApplication1.Areas.AdminControl.Controllers
                 return Json(new { data = false });
             return Json(new { data = data });
         }
+
+        #endregion Image Homestay
+
+        #region Account
+
+
+
+        #endregion Account
     }
 }
